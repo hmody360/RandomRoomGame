@@ -25,47 +25,48 @@ public class BackroomsGenerator : MonoBehaviour
         RemoveLeftoverDoors();
     }
 
-    private void GenerateLevel()
+    private void GenerateLevel() //Generate Start, Connecting and Ending Rooms in Order
     {
+        //Begin from the center of the grid
         Vector2Int startPos = Vector2Int.zero;
         GameObject startRoom = SpawnRoom(GetRandomPrefab(startingRooms), startPos);
 
-        _grid.Add(startPos, startRoom);
+        _grid.Add(startPos, startRoom); //Add the room using its vectorial postion and the room as a gameObject
 
-        AddDoors(startPos, startRoom.GetComponentsInChildren<Door>());
+        AddDoors(startPos, startRoom.GetComponentsInChildren<Door>()); //add the room's doors to have them checked later for other rooms
 
-        if(roomAmount < 3)
+        if(roomAmount < 3) //reset to the least logical room amount
         {
             roomAmount = 3;
         }
 
-        int connectingRoomsToAdd = roomAmount - 2;
-        int KeyRoomIndex = Random.Range(1, connectingRoomsToAdd);
+        int connectingRoomsToAdd = roomAmount - 2; //connecting rooms minus the start and ending rooms
+        int KeyRoomIndex = Random.Range(1, connectingRoomsToAdd); //Select a connnecting room randomly to generate a key within it
 
-        while (connectingRoomsToAdd > 0 && availableDoors.Count > 0)
+        while (connectingRoomsToAdd > 0 && availableDoors.Count > 0) //Start Adding connecting rooms by selecting a random door, removing it from the list
         {
             var openDoor = GetRandomFromList(availableDoors);
             availableDoors.Remove(openDoor);
 
             Vector2Int newPos = openDoor.pos + DirectionToVector(openDoor.door.direction);
 
-            if (_grid.ContainsKey(newPos))
+            if (_grid.ContainsKey(newPos)) //checking if there's a room in the grid spot (if yes restart loop and check for a different door, if no create the room)
                 continue;
 
-            GameObject connectingRoom = SpawnRoom(GetRandomPrefab(connectingRooms), newPos);
+            GameObject connectingRoom = SpawnRoom(GetRandomPrefab(connectingRooms), newPos); //Spawn the new room by selecting a random room and filling the grid spot (then adding it to the grid)
             _grid.Add(newPos, connectingRoom);
 
-            AddDoors(newPos, connectingRoom.GetComponentsInChildren<Door>());
+            AddDoors(newPos, connectingRoom.GetComponentsInChildren<Door>()); //Add the doors of this new room to the door list.
 
-            if(KeyRoomIndex == connectingRoomsToAdd)
+            if(KeyRoomIndex == connectingRoomsToAdd) //Add Key in the random position if this generated room is the room to spawn it in.
             {
                 Instantiate(keyPrefab, connectingRoom.transform.position + Vector3.up * keyGroundOffset, keyPrefab.transform.rotation, connectingRoom.transform);
             }
 
-            connectingRoomsToAdd--;
+            connectingRoomsToAdd--; //After adding the room decrease the counter
         }
 
-        while(availableDoors.Count > 0)
+        while(availableDoors.Count > 0) //Adding the final room in an available grid spot.
         {
             var openDoor = GetRandomFromList(availableDoors);
             availableDoors.Remove(openDoor);
@@ -84,7 +85,7 @@ public class BackroomsGenerator : MonoBehaviour
         }
     }
 
-    private void RemoveLeftoverDoors()
+    private void RemoveLeftoverDoors() //Patch Doors that are not connected to a room by checking if the direction has no grid spot adjacent to it.
     {
         foreach ( var doorData in availableDoors)
         {
@@ -103,14 +104,14 @@ public class BackroomsGenerator : MonoBehaviour
 
     // Helpers
 
-    private GameObject SpawnRoom(GameObject prefab, Vector2Int gridPos)
+    private GameObject SpawnRoom(GameObject prefab, Vector2Int gridPos) //Room spawner realtive to the grid postion * the room size.
     {
         Vector3 worldPostion = new Vector3(gridPos.x * roomSize, 0, gridPos.y * roomSize);
 
         return Instantiate(prefab, worldPostion, Quaternion.identity, levelParent.transform);
     }
 
-    private void AddDoors(Vector2Int roomPos, Door[] doors)
+    private void AddDoors(Vector2Int roomPos, Door[] doors) //Add the list of doors if the adjacnt grid spot is free for adding a room.
     {
 
         foreach(Door door in doors)
@@ -124,7 +125,7 @@ public class BackroomsGenerator : MonoBehaviour
         }
     }
 
-    private Vector2Int DirectionToVector(DoorDirection direction)
+    private Vector2Int DirectionToVector(DoorDirection direction) //Convert the door direction to a vector which translates its adjacent grid postion within this room.
     {
         switch (direction)
         {
@@ -141,12 +142,12 @@ public class BackroomsGenerator : MonoBehaviour
         return Vector2Int.zero;
     }
 
-    private T GetRandomFromList<T>(IList<T> list)
+    private T GetRandomFromList<T>(IList<T> list) //Get a random item from a generic list.
     {
         return list[Random.Range(0, list.Count)];
     }
 
-    private GameObject GetRandomPrefab(GameObject[] array)
+    private GameObject GetRandomPrefab(GameObject[] array) //get a random item from an array of gameObjects.
     {
         return array[Random.Range(0, array.Length)];
     }

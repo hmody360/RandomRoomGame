@@ -18,12 +18,12 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void ToggleKeyObtained()
+    public void ToggleKeyObtained() //Prompt Key Collection
     {
         isKeyObtained = true;
     }
 
-    public bool GetKeyStatus()
+    public bool GetKeyStatus() //Check Status of Key
     {
         return isKeyObtained;
     }

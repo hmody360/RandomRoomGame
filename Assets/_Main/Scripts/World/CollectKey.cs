@@ -13,7 +13,7 @@ public class CollectKey : MonoBehaviour
         _meshRenderer = GetComponent<MeshRenderer>();
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other) //If the player touches the key, trigger its collection, play its sound and hide it, then destroy it.
     {
         if (other.CompareTag("Player"))
         {

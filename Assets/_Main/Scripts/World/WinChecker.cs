@@ -1,4 +1,6 @@
+using NUnit.Framework;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class WinChecker : MonoBehaviour
 {
@@ -9,7 +11,7 @@ public class WinChecker : MonoBehaviour
         _collider = GetComponent<Collider>();
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter(Collider other) //Check if the player is infront of the exit locker and has the key to trigger win, otherwise prompt to find key
     {
         if (other.CompareTag("Player"))
         {

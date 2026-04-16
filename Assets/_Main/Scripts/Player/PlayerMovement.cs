@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [Header("Speeds")]
     public float speed;
     public float jumpForce;
     public float rotationSpeed;
@@ -48,7 +49,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    private void HandleJump()
+    private void HandleJump()//check if jump button is pressed and player is on ground
     {
         if(_input.JumpPressed && _isGrounded)
         {
@@ -58,7 +59,7 @@ public class PlayerMovement : MonoBehaviour
         _input.ResetJump();
     }
 
-    private void moveAndRotate()
+    private void moveAndRotate() //Movement Logic
     {
         //Movement Axis Changing
         Vector2 input = _input.MoveInput;
@@ -73,9 +74,9 @@ public class PlayerMovement : MonoBehaviour
             _walkingAS.Stop();
         }
 
-            //Realtive Camera Movement
+       //Realtive Camera Movement with rotation
 
-            Vector3 CameraForward = _cameraTransform.forward;
+        Vector3 CameraForward = _cameraTransform.forward;
         Vector3 CameraRight = _cameraTransform.right;
 
         CameraForward.y = 0f;
@@ -99,7 +100,7 @@ public class PlayerMovement : MonoBehaviour
         
     }
 
-    private void CheckGround()
+    private void CheckGround() //Check if player is grounded
     {
         _isGrounded = Physics.CheckSphere(transform.position + Vector3.up * _groundCheckerOffset, _groundCheckerRadius, _groundLayer);
     }
