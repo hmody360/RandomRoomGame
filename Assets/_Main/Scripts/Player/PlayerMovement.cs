@@ -11,12 +11,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask _groundLayer;
 
     [SerializeField] private bool _isGrounded;
+    [SerializeField] private bool _isWalking;
 
 
     private Rigidbody _playerRB;
     private PlayerInputHandler _input;
-
-    private Vector2 _moveInput;
+    private AudioSource _walkingAS;
     private Transform _cameraTransform;
     private Quaternion _targetRoation;
     private Vector3 _playerDirection;
@@ -25,6 +25,7 @@ public class PlayerMovement : MonoBehaviour
     {
         _playerRB = GetComponent<Rigidbody>();
         _input = GetComponent<PlayerInputHandler>();
+        _walkingAS = GetComponent<AudioSource>();
         _cameraTransform = Camera.main.transform;
     }
 
@@ -62,9 +63,19 @@ public class PlayerMovement : MonoBehaviour
         //Movement Axis Changing
         Vector2 input = _input.MoveInput;
 
-        //Realtive Camera Movement
+        _isWalking = _input.MoveInput.sqrMagnitude > 0.01f && _isGrounded;
 
-        Vector3 CameraForward = _cameraTransform.forward;
+        if (_isWalking && !_walkingAS.isPlaying)
+        {
+            _walkingAS.Play();
+        }else if (!_isWalking && _walkingAS.isPlaying)
+        {
+            _walkingAS.Stop();
+        }
+
+            //Realtive Camera Movement
+
+            Vector3 CameraForward = _cameraTransform.forward;
         Vector3 CameraRight = _cameraTransform.right;
 
         CameraForward.y = 0f;

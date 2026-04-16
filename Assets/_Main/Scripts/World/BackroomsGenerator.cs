@@ -7,6 +7,7 @@ public class BackroomsGenerator : MonoBehaviour
     public GameObject levelParent;
     public float roomSize;
     public int roomAmount;
+    public float keyGroundOffset = 2;
 
     [Header("Prefabs")]
     public GameObject[] startingRooms;
@@ -55,6 +56,11 @@ public class BackroomsGenerator : MonoBehaviour
             _grid.Add(newPos, connectingRoom);
 
             AddDoors(newPos, connectingRoom.GetComponentsInChildren<Door>());
+
+            if(KeyRoomIndex == connectingRoomsToAdd)
+            {
+                Instantiate(keyPrefab, connectingRoom.transform.position + Vector3.up * keyGroundOffset, keyPrefab.transform.rotation, connectingRoom.transform);
+            }
 
             connectingRoomsToAdd--;
         }
@@ -133,23 +139,6 @@ public class BackroomsGenerator : MonoBehaviour
         }
 
         return Vector2Int.zero;
-    }
-
-    private DoorDirection? GetOppositeDoorDirection(DoorDirection? direction)
-    {
-        switch (direction)
-        {
-            case DoorDirection.North:
-                return DoorDirection.South;
-            case DoorDirection.South:
-                return DoorDirection.North;
-            case DoorDirection.East:
-                return DoorDirection.West;
-            case DoorDirection.West:
-                return DoorDirection.East;
-            default:
-                return direction;
-        }
     }
 
     private T GetRandomFromList<T>(IList<T> list)

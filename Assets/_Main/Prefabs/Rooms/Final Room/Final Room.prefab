@@ -1,5 +1,71 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &920667806093200308
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8765572060135596315}
+  - component: {fileID: 6167981837918937802}
+  - component: {fileID: 7018896598764933971}
+  m_Layer: 0
+  m_Name: WinChecker
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8765572060135596315
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 920667806093200308}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 6803855053451330416}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &6167981837918937802
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 920667806093200308}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 0.59298456, y: 1, z: 1.1775992}
+  m_Center: {x: 0.007050355, y: 0, z: 0.24003705}
+--- !u!114 &7018896598764933971
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 920667806093200308}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f51a2c182a3a1804b80dd3b15fc3579d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::WinChecker
 --- !u!1 &2971948496822234718
 GameObject:
   m_ObjectHideFlags: 0
@@ -12,7 +78,7 @@ GameObject:
   - component: {fileID: 8419847502019912938}
   - component: {fileID: 494753533317909886}
   - component: {fileID: 2475559845128906757}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Final Room
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -151,6 +217,7 @@ Transform:
   m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 666243881949272579}
+  - {fileID: 8765572060135596315}
   m_Father: {fileID: 589159730650281716}
   m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
 --- !u!33 &8414296653270581905
@@ -360,6 +427,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Door
   direction: 2
+  doorObj: {fileID: 0}
 --- !u!1 &3509213329912153830
 GameObject:
   m_ObjectHideFlags: 0
@@ -702,6 +770,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Door
   direction: 3
+  doorObj: {fileID: 0}
 --- !u!1 &5632388061155398879
 GameObject:
   m_ObjectHideFlags: 0
@@ -955,6 +1024,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Door
   direction: 1
+  doorObj: {fileID: 0}
 --- !u!1 &7436304134383348819
 GameObject:
   m_ObjectHideFlags: 0
@@ -1083,6 +1153,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Door
   direction: 0
+  doorObj: {fileID: 0}
 --- !u!1 &7959495637865922730
 GameObject:
   m_ObjectHideFlags: 0

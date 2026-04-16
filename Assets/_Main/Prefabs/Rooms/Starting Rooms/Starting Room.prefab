@@ -285,7 +285,7 @@ GameObject:
   - component: {fileID: 4611679431613377046}
   - component: {fileID: 5873612275776678914}
   - component: {fileID: 9143782974172426555}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Starting Room
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -519,6 +519,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Door
   direction: 2
+  doorObj: {fileID: 0}
 --- !u!1 &4154194395291157950
 GameObject:
   m_ObjectHideFlags: 0
@@ -737,6 +738,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Door
   direction: 3
+  doorObj: {fileID: 0}
 --- !u!1 &5256836216280936231
 GameObject:
   m_ObjectHideFlags: 0
@@ -865,6 +867,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Door
   direction: 0
+  doorObj: {fileID: 0}
 --- !u!1 &8550478633983743990
 GameObject:
   m_ObjectHideFlags: 0
@@ -1083,3 +1086,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Door
   direction: 1
+  doorObj: {fileID: 0}

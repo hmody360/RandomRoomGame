@@ -128,6 +128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Door
   direction: 2
+  doorObj: {fileID: 0}
 --- !u!1 &3165967335930876009
 GameObject:
   m_ObjectHideFlags: 0
@@ -256,6 +257,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Door
   direction: 0
+  doorObj: {fileID: 0}
 --- !u!1 &4139311990767104335
 GameObject:
   m_ObjectHideFlags: 0
@@ -384,6 +386,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Door
   direction: 3
+  doorObj: {fileID: 0}
 --- !u!1 &5021618631586911258
 GameObject:
   m_ObjectHideFlags: 0
@@ -512,6 +515,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Door
   direction: 1
+  doorObj: {fileID: 0}
 --- !u!1 &6286522607150498622
 GameObject:
   m_ObjectHideFlags: 0
@@ -555,7 +559,7 @@ GameObject:
   - component: {fileID: 5399538431881590786}
   - component: {fileID: 1275375706846114105}
   - component: {fileID: 826575827559329808}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Connecting Room
   m_TagString: Untagged
   m_Icon: {fileID: 0}
