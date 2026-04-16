@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    [Header("Speeds")]
     public float speed;
     public float jumpForce;
     public float rotationSpeed;
@@ -11,12 +12,12 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private LayerMask _groundLayer;
 
     [SerializeField] private bool _isGrounded;
+    [SerializeField] private bool _isWalking;
 
 
     private Rigidbody _playerRB;
     private PlayerInputHandler _input;
-
-    private Vector2 _moveInput;
+    private AudioSource _walkingAS;
     private Transform _cameraTransform;
     private Quaternion _targetRoation;
     private Vector3 _playerDirection;
@@ -25,6 +26,7 @@ public class PlayerMovement : MonoBehaviour
     {
         _playerRB = GetComponent<Rigidbody>();
         _input = GetComponent<PlayerInputHandler>();
+        _walkingAS = GetComponent<AudioSource>();
         _cameraTransform = Camera.main.transform;
     }
 
@@ -47,7 +49,7 @@ public class PlayerMovement : MonoBehaviour
     }
 
 
-    private void HandleJump()
+    private void HandleJump()//check if jump button is pressed and player is on ground
     {
         if(_input.JumpPressed && _isGrounded)
         {
@@ -57,12 +59,22 @@ public class PlayerMovement : MonoBehaviour
         _input.ResetJump();
     }
 
-    private void moveAndRotate()
+    private void moveAndRotate() //Movement Logic
     {
         //Movement Axis Changing
         Vector2 input = _input.MoveInput;
 
-        //Realtive Camera Movement
+        _isWalking = _input.MoveInput.sqrMagnitude > 0.01f && _isGrounded;
+
+        if (_isWalking && !_walkingAS.isPlaying)
+        {
+            _walkingAS.Play();
+        }else if (!_isWalking && _walkingAS.isPlaying)
+        {
+            _walkingAS.Stop();
+        }
+
+       //Realtive Camera Movement with rotation
 
         Vector3 CameraForward = _cameraTransform.forward;
         Vector3 CameraRight = _cameraTransform.right;
@@ -88,7 +100,7 @@ public class PlayerMovement : MonoBehaviour
         
     }
 
-    private void CheckGround()
+    private void CheckGround() //Check if player is grounded
     {
         _isGrounded = Physics.CheckSphere(transform.position + Vector3.up * _groundCheckerOffset, _groundCheckerRadius, _groundLayer);
     }
