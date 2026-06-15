@@ -7,17 +7,22 @@ public class PlayerMovement : MonoBehaviour
     public float jumpForce;
     public float rotationSpeed;
 
+    [Header("Ground Checking")]
     [SerializeField] private float _groundCheckerOffset = -0.9f;
     [SerializeField] private float _groundCheckerRadius = 0.3f;
     [SerializeField] private LayerMask _groundLayer;
 
+    [Header("Indicators")]
     [SerializeField] private bool _isGrounded;
     [SerializeField] private bool _isWalking;
+
+    [Header("AudioSources")]
+    [SerializeField] AudioSource WalkAS;
+    [SerializeField] AudioSource JumpAS;
 
 
     private Rigidbody _playerRB;
     private PlayerInputHandler _input;
-    private AudioSource _walkingAS;
     private Transform _cameraTransform;
     private Quaternion _targetRoation;
     private Vector3 _playerDirection;
@@ -26,7 +31,6 @@ public class PlayerMovement : MonoBehaviour
     {
         _playerRB = GetComponent<Rigidbody>();
         _input = GetComponent<PlayerInputHandler>();
-        _walkingAS = GetComponent<AudioSource>();
         _cameraTransform = Camera.main.transform;
     }
 
@@ -45,18 +49,27 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         moveAndRotate();
-        HandleJump();
+    }
+
+    private void OnEnable()
+    {
+        _input.OnJump += HandleJump;
+    }
+
+    private void OnDisable()
+    {
+        _input.OnJump -= HandleJump;
     }
 
 
     private void HandleJump()//check if jump button is pressed and player is on ground
     {
-        if(_input.JumpPressed && _isGrounded)
+        if(_isGrounded)
         {
             _playerRB.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            JumpAS.PlayOneShot(JumpAS.clip);
         }
 
-        _input.ResetJump();
     }
 
     private void moveAndRotate() //Movement Logic
@@ -66,12 +79,12 @@ public class PlayerMovement : MonoBehaviour
 
         _isWalking = _input.MoveInput.sqrMagnitude > 0.01f && _isGrounded;
 
-        if (_isWalking && !_walkingAS.isPlaying)
+        if (_isWalking && !WalkAS.isPlaying)
         {
-            _walkingAS.Play();
-        }else if (!_isWalking && _walkingAS.isPlaying)
+            WalkAS.Play();
+        }else if (!_isWalking && WalkAS.isPlaying)
         {
-            _walkingAS.Stop();
+            WalkAS.Stop();
         }
 
        //Realtive Camera Movement with rotation
