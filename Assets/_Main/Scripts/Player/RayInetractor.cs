@@ -1,17 +1,23 @@
 using UnityEngine;
-using UnityEngine.InputSystem;
 
-public class RayInetractor : MonoBehaviour
+public class RayInteractor : MonoBehaviour
 {
-    private Camera _camera;
-    private Ray _rayToCast;
+    private static Vector3 ViewportCenter = new Vector3(0.5f, 0.5f);
 
-    private IInteractable _currentInteractible;
+    private Camera _camera;
     private PlayerInputHandler _input;
 
-    [SerializeField] private Outline _lastHitOutline;
+    private IInteractable _currentInteractable;
+    private Outline _currentOutline;
+
     [SerializeField] private float _maxDistance = 6f;
-    [SerializeField] LayerMask _interactible;
+    [SerializeField] private LayerMask _interactableMask;
+
+    private void Awake()
+    {
+        _camera = Camera.main;
+        _input = GetComponent<PlayerInputHandler>();
+    }
 
     private void OnEnable()
     {
@@ -23,70 +29,55 @@ public class RayInetractor : MonoBehaviour
         _input.OnInteract -= Interact;
     }
 
-    void Awake()
+    private void Update()
     {
-        _camera = Camera.main;
-    }
+        Ray ray = _camera.ViewportPointToRay(ViewportCenter);
 
-    // Update is called once per frame
-    void Update()
-    {
-        _rayToCast = _camera.ViewportPointToRay(new Vector3(0.5f, 0.5f)); //Create a RayCast from the center of the camera
-
-        if (Physics.Raycast(_rayToCast, out RaycastHit hit, _maxDistance, _interactible)) //if the ray cast hits an interactible object display an outline, if the player interacts, do the interaction set for this item
+        if (Physics.Raycast(ray, out RaycastHit hit, _maxDistance, _interactableMask))
         {
-            GameObject currentGameObject = hit.collider.gameObject;
-            Outline currentOutlined = currentGameObject.GetComponent<Outline>();
-            IInteractable item = currentGameObject.transform.GetComponent<IInteractable>();
+            GameObject hitObject = hit.collider.gameObject;
 
-            if (currentOutlined != _lastHitOutline) //Disable outlines once not looking at the current item
+            hitObject.TryGetComponent(out IInteractable interactable);
+            hitObject.TryGetComponent(out Outline outline);
+
+            // Update if target changed
+            if (interactable != _currentInteractable)
             {
-                DisableCurrentOutline();
-                _lastHitOutline = currentOutlined;
-                EnableCurrentOutline();
+                ClearCurrentInteractable();
+
+                _currentInteractable = interactable;
+                _currentOutline = outline;
+
+                if (_currentOutline != null)
+                    _currentOutline.enabled = true;
+
+                if (_currentInteractable != null)
+                    UIManager.instance.ShowInteractText(_currentInteractable.ActionName);
             }
-
-
-            _currentInteractible = item;
         }
         else
         {
-            _currentInteractible = null;
-            DisableCurrentOutline();
+            ClearCurrentInteractable();
         }
     }
 
     private void Interact()
     {
-        if (_currentInteractible != null)
-        {
-            _currentInteractible.Interact();
-        }
-        Debug.Log("Looking at:" + _currentInteractible);
+        _currentInteractable?.Interact();
     }
 
-
-    private void DisableCurrentOutline()
+    private void ClearCurrentInteractable()
     {
-        if(_lastHitOutline != null)
+        if (_currentOutline != null)
         {
-            _lastHitOutline.enabled = false;
-            _lastHitOutline = null;
+            _currentOutline.enabled = false;
+            _currentOutline = null;
         }
-    }
 
-    private void EnableCurrentOutline()
-    {
-        if(_lastHitOutline != null)
+        if (_currentInteractable != null)
         {
-            _lastHitOutline.enabled = true;
+            UIManager.instance.HideInteractText();
+            _currentInteractable = null;
         }
-    }
-
-    private void OnDrawGizmos()
-    {
-        Gizmos.color = Color.blue;
-        Gizmos.DrawRay(_rayToCast);
-
     }
 }

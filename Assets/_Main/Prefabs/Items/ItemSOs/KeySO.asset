@@ -15,4 +15,4 @@ MonoBehaviour:
   itemId: 0
   itemName: Key
   itemIcon: {fileID: 0}
-  itemPickupSound: {fileID: 0}
+  itemPickupSound: {fileID: 8300000, guid: 3c82664ed8e49624aa97882ed60d7de5, type: 3}

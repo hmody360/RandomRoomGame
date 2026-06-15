@@ -47,7 +47,7 @@ MonoBehaviour:
   levelParent: {fileID: 0}
   roomSize: 6
   roomAmount: 30
-  keyGroundOffset: 2
+  keyGroundOffset: 0.2
   startingRooms:
   - {fileID: 2803058164744705685, guid: 14e5b57b5bbb7e1439ffd60fcbbefa25, type: 3}
   connectingRooms:

@@ -289,6 +289,7 @@ GameObject:
   - component: {fileID: 7065254849489216267}
   - component: {fileID: 8504923284359789041}
   - component: {fileID: 153184983865307866}
+  - component: {fileID: 8815496022902134423}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -457,6 +458,22 @@ MonoBehaviour:
   _isWalking: 0
   WalkAS: {fileID: 9022380542760074830}
   JumpAS: {fileID: 3251127277760420137}
+--- !u!114 &8815496022902134423
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7029913937856689692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b51835ee206df343a1f85a85543c7e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::RayInetractor
+  _maxDistance: 6
+  _interactableMask:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!1 &8184561736306985589
 GameObject:
   m_ObjectHideFlags: 0

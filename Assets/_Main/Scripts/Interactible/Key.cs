@@ -20,7 +20,10 @@ public class Item : MonoBehaviour, IInteractable
     {
         _collider.enabled = false;
         _meshRenderer.enabled = false;
-        _audioSource.PlayOneShot(data.ItemPickupSound);
+        if(data.ItemPickupSound != null)
+        {
+            _audioSource.PlayOneShot(data.ItemPickupSound);
+        }
         GameManager.instance.ToggleKeyObtained();
         Destroy(this.gameObject, 1.5f);
     }
