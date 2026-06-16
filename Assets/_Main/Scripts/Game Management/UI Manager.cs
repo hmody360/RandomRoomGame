@@ -25,13 +25,13 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void ShowPrompt(string text) //Set Text and Show it
+    private void ShowPrompt(string text) //Set Text and Show it
     {
         _promptText.text = text;
         _promptContainer.SetActive(true);
     }
 
-    public void HidePrompt() //Set Text To Blank and Hide it
+    private void HidePrompt() //Set Text To Blank and Hide it
     {
         _promptText.text = "";
         _promptContainer.SetActive(false);

@@ -7,7 +7,7 @@ public class Item : MonoBehaviour, IInteractable
     private Collider _collider;
     private AudioSource _audioSource;
     private MeshRenderer _meshRenderer;
-    public string ActionName => "Pick up " + data.ItemName;
+    public string ActionName => ((data.IsPickable) ? "Pick up " : "Look At " ) + data.ItemName;
 
     private void Awake()
     {
@@ -18,14 +18,24 @@ public class Item : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        _collider.enabled = false;
-        _meshRenderer.enabled = false;
-        if(data.ItemPickupSound != null)
+        if(data.IsPickable)
+        {
+            _collider.enabled = false;
+            _meshRenderer.enabled = false;
+            GameManager.instance.ToggleKeyObtained();
+            Destroy(this.gameObject, 1.5f);
+        }
+
+        if (data.ItemDescription != null && data.ItemDescription.Length > 0)
+        {
+            UIManager.instance.StartPromptCoroutine(3 ,data.ItemDescription);
+        }
+
+        if (data.ItemPickupSound != null)
         {
             _audioSource.PlayOneShot(data.ItemPickupSound);
         }
-        GameManager.instance.ToggleKeyObtained();
-        Destroy(this.gameObject, 1.5f);
+       
     }
             
 

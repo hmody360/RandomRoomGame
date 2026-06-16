@@ -1257,7 +1257,7 @@ RectTransform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
+  m_ConstrainProportionsScale: 1
   m_Children:
   - {fileID: 2090128384}
   m_Father: {fileID: 360441241}
@@ -1472,8 +1472,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 227.9478, y: 50}
+  m_AnchoredPosition: {x: 0, y: -0}
+  m_SizeDelta: {x: 420.861, y: 25.9924}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2090128385
 MonoBehaviour:
@@ -1522,10 +1522,10 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 36
+  m_fontSize: 23.25
   m_fontSizeBase: 36
   m_fontWeight: 400
-  m_enableAutoSizing: 0
+  m_enableAutoSizing: 1
   m_fontSizeMin: 18
   m_fontSizeMax: 72
   m_fontStyle: 0
@@ -1618,6 +1618,22 @@ PrefabInstance:
       propertyPath: levelParent
       value: 
       objectReference: {fileID: 2124452287}
+    - target: {fileID: 393332676787101324, guid: e94553994e361b3458844f654f1ff7ae, type: 3}
+      propertyPath: randomItemPrefabs.Array.size
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 393332676787101324, guid: e94553994e361b3458844f654f1ff7ae, type: 3}
+      propertyPath: 'randomItemPrefabs.Array.data[0]'
+      value: 
+      objectReference: {fileID: 5262700248468881568, guid: 248ab3f988ea00e4c8ae716c86563034, type: 3}
+    - target: {fileID: 393332676787101324, guid: e94553994e361b3458844f654f1ff7ae, type: 3}
+      propertyPath: 'randomItemPrefabs.Array.data[1]'
+      value: 
+      objectReference: {fileID: 8766555487732042720, guid: 0af36556da6a9bf488df07cad9061d37, type: 3}
+    - target: {fileID: 393332676787101324, guid: e94553994e361b3458844f654f1ff7ae, type: 3}
+      propertyPath: 'randomItemPrefabs.Array.data[2]'
+      value: 
+      objectReference: {fileID: 361500869672112313, guid: 6b90958a986bf934f9b62f33bfe2a358, type: 3}
     - target: {fileID: 3077295093257973689, guid: e94553994e361b3458844f654f1ff7ae, type: 3}
       propertyPath: m_Name
       value: LevelManager

@@ -279,7 +279,7 @@ GameObject:
   - component: {fileID: 3001078087002699175}
   - component: {fileID: 1694329036244405755}
   - component: {fileID: 1665529571784496411}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Door South
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -622,7 +622,7 @@ GameObject:
   - component: {fileID: 5947531119522777849}
   - component: {fileID: 8043876780528209995}
   - component: {fileID: 6192907971170337784}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Door West
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -876,7 +876,7 @@ GameObject:
   - component: {fileID: 5859370899570810239}
   - component: {fileID: 1175157995176483564}
   - component: {fileID: 4406407101547173655}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Door East
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1005,7 +1005,7 @@ GameObject:
   - component: {fileID: 6149266773540679968}
   - component: {fileID: 403125084457227073}
   - component: {fileID: 181340646364670234}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Door North
   m_TagString: Untagged
   m_Icon: {fileID: 0}

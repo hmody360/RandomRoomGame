@@ -470,10 +470,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b51835ee206df343a1f85a85543c7e4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::RayInetractor
-  _maxDistance: 6
+  _maxDistance: 4
   _interactableMask:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 448
 --- !u!1 &8184561736306985589
 GameObject:
   m_ObjectHideFlags: 0
