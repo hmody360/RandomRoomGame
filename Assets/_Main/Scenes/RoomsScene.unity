@@ -1615,17 +1615,21 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 393332676787101324, guid: e94553994e361b3458844f654f1ff7ae, type: 3}
+      propertyPath: roomAmount
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 393332676787101324, guid: e94553994e361b3458844f654f1ff7ae, type: 3}
       propertyPath: levelParent
       value: 
       objectReference: {fileID: 2124452287}
     - target: {fileID: 393332676787101324, guid: e94553994e361b3458844f654f1ff7ae, type: 3}
       propertyPath: randomItemPrefabs.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 393332676787101324, guid: e94553994e361b3458844f654f1ff7ae, type: 3}
       propertyPath: 'randomItemPrefabs.Array.data[0]'
       value: 
-      objectReference: {fileID: 5262700248468881568, guid: 248ab3f988ea00e4c8ae716c86563034, type: 3}
+      objectReference: {fileID: 7822499543555164494, guid: bd779696b1404c843b1ac201732d442f, type: 3}
     - target: {fileID: 393332676787101324, guid: e94553994e361b3458844f654f1ff7ae, type: 3}
       propertyPath: 'randomItemPrefabs.Array.data[1]'
       value: 

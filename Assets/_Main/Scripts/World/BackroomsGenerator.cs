@@ -153,7 +153,7 @@ public class BackroomsGenerator : MonoBehaviour
 
     private void PlaceItemRandom(GameObject itemObj)
     {
-        int SpotIndex = Random.Range(0, availableItemSpots.Count);
+        int SpotIndex = Random.Range(0, availableItemSpots.Count - 1);
         ItemSpot SpotToPlace = availableItemSpots[SpotIndex];
         Instantiate(itemObj, SpotToPlace.transform.position,itemObj.transform.rotation, SpotToPlace.transform);
         SpotToPlace.TriggerOccupation();

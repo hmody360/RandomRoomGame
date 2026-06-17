@@ -1,7 +1,14 @@
 fileFormatVersion: 2
 guid: 6b91d8ef45459e948aac73a56830a8a5
+AssetOrigin:
+  serializedVersion: 1
+  productId: 377244
+  packageName: 'Low-Poly Home Set #1 [+320 Models] [VNB]'
+  packageVersion: 1.0
+  assetPath: Assets/VNB - Home Set/Models/Home_Set_LeoVNB.fbx
+  uploadId: 910690
 ModelImporter:
-  serializedVersion: 22200
+  serializedVersion: 24200
   internalIDToNameTable: []
   externalObjects:
   - first:
@@ -146,8 +153,6 @@ ModelImporter:
     optimizeGameObjects: 0
     removeConstantScaleCurves: 0
     motionNodeName: 
-    rigImportErrors: 
-    rigImportWarnings: 
     animationImportErrors: 
     animationImportWarnings: 
     animationRetargetingWarnings: 
@@ -162,7 +167,7 @@ ModelImporter:
     extraExposedTransformPaths: []
     extraUserProperties: []
     clipAnimations: []
-    isReadable: 0
+    isReadable: 1
   meshes:
     lODScreenPercentages: []
     globalScale: 1
@@ -188,6 +193,9 @@ ModelImporter:
     maxBonesPerVertex: 4
     minBoneWeight: 0.001
     optimizeBones: 1
+    generateMeshLods: 0
+    meshLodGenerationFlags: 0
+    maximumMeshLod: -1
     meshOptimizationFlags: -1
     indexFormat: 0
     secondaryUVAngleDistortion: 8
@@ -237,10 +245,3 @@ ModelImporter:
   userData: 
   assetBundleName: 
   assetBundleVariant: 
-AssetOrigin:
-  serializedVersion: 1
-  productId: 377244
-  packageName: 'Low-Poly Home Set #1 [+320 Models] [VNB]'
-  packageVersion: 1.0
-  assetPath: Assets/VNB - Home Set/Models/Home_Set_LeoVNB.fbx
-  uploadId: 910690
