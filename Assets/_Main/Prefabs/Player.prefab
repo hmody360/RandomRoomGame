@@ -446,7 +446,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ea99eb13e1d9f44982790400b2e81bf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerMovement
-  speed: 5
+  currentSpeed: 0
+  walkSpeed: 5
+  sprintSpeed: 10
   jumpForce: 4
   rotationSpeed: 10
   _groundCheckerOffset: -0.9
@@ -456,8 +458,11 @@ MonoBehaviour:
     m_Bits: 64
   _isGrounded: 0
   _isWalking: 0
+  _wantsToSprint: 0
   WalkAS: {fileID: 9022380542760074830}
   JumpAS: {fileID: 3251127277760420137}
+  WalkSFX: {fileID: 8300000, guid: 0556ab095b6f0e945b94e6f82a818fd5, type: 3}
+  SprintSFX: {fileID: 8300000, guid: 1107619f6ca390e4a9e4bec8b3ba0457, type: 3}
 --- !u!114 &8815496022902134423
 MonoBehaviour:
   m_ObjectHideFlags: 0

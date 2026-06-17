@@ -8,6 +8,8 @@ public class PlayerInputHandler : MonoBehaviour
 
     public event Action OnJump;
     public event Action OnInteract;
+    public event Action OnSprint;
+    public event Action OnStopSprint;
 
     private PlayerInputActions _input;
 
@@ -26,6 +28,9 @@ public class PlayerInputHandler : MonoBehaviour
 
         _input.Player.Jump.performed += HandleJump;
         _input.Player.Interact.performed += HandleInteract;
+        _input.Player.Sprint.performed += HandleSprint;
+        _input.Player.Sprint.canceled += HandleStopSprint;
+
     }
 
     private void OnDisable()
@@ -34,6 +39,8 @@ public class PlayerInputHandler : MonoBehaviour
 
         _input.Player.Jump.performed -= HandleJump;
         _input.Player.Interact.performed -= HandleInteract;
+        _input.Player.Sprint.performed -= HandleSprint;
+        _input.Player.Sprint.canceled += HandleStopSprint;
     }
 
     private void HandleJump(InputAction.CallbackContext ctx)
@@ -44,5 +51,15 @@ public class PlayerInputHandler : MonoBehaviour
     private void HandleInteract(InputAction.CallbackContext ctx)
     {
         OnInteract?.Invoke();
+    }
+
+    private void HandleSprint(InputAction.CallbackContext ctx)
+    {
+        OnSprint?.Invoke();
+    }
+
+    private void HandleStopSprint(InputAction.CallbackContext ctx)
+    {
+        OnStopSprint?.Invoke();
     }
 }

@@ -3,7 +3,9 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Speeds")]
-    public float speed;
+    public float currentSpeed;
+    public float walkSpeed;
+    public float sprintSpeed;
     public float jumpForce;
     public float rotationSpeed;
 
@@ -15,10 +17,15 @@ public class PlayerMovement : MonoBehaviour
     [Header("Indicators")]
     [SerializeField] private bool _isGrounded;
     [SerializeField] private bool _isWalking;
+    [SerializeField] private bool _wantsToSprint;
 
     [Header("AudioSources")]
     [SerializeField] AudioSource WalkAS;
     [SerializeField] AudioSource JumpAS;
+
+    [Header("AudioClips")]
+    [SerializeField] AudioClip WalkSFX;
+    [SerializeField] AudioClip SprintSFX;
 
 
     private Rigidbody _playerRB;
@@ -32,6 +39,7 @@ public class PlayerMovement : MonoBehaviour
         _playerRB = GetComponent<Rigidbody>();
         _input = GetComponent<PlayerInputHandler>();
         _cameraTransform = Camera.main.transform;
+        currentSpeed = walkSpeed;
     }
 
     private void Start()
@@ -44,6 +52,7 @@ public class PlayerMovement : MonoBehaviour
     private void Update()
     {
         CheckGround();
+        CheckSprint();
     }
 
     void FixedUpdate()
@@ -54,11 +63,15 @@ public class PlayerMovement : MonoBehaviour
     private void OnEnable()
     {
         _input.OnJump += HandleJump;
+        _input.OnSprint += HandleSprint;
+        _input.OnStopSprint += HandleStopSprint;
     }
 
     private void OnDisable()
     {
         _input.OnJump -= HandleJump;
+        _input.OnSprint -= HandleSprint;
+        _input.OnStopSprint -= HandleStopSprint;
     }
 
 
@@ -70,6 +83,31 @@ public class PlayerMovement : MonoBehaviour
             JumpAS.PlayOneShot(JumpAS.clip);
         }
 
+    }
+
+    private void HandleSprint()
+    {
+        _wantsToSprint = true;
+    }
+
+    private void HandleStopSprint()
+    {
+        _wantsToSprint = false;
+    }
+
+    private void CheckSprint()
+    {
+        if(_wantsToSprint && _isGrounded)
+        {
+            currentSpeed = sprintSpeed;
+            WalkAS.clip = SprintSFX;
+        }
+        else
+        {
+            currentSpeed = walkSpeed;
+            WalkAS.clip = WalkSFX;
+        }
+        
     }
 
     private void moveAndRotate() //Movement Logic
@@ -100,7 +138,7 @@ public class PlayerMovement : MonoBehaviour
 
         _playerDirection = (forwardRealtive + rightRealtive).normalized;
 
-        Vector3 movementDir = _playerDirection * speed;
+        Vector3 movementDir = _playerDirection * currentSpeed;
 
         _playerRB.linearVelocity = new Vector3(movementDir.x, _playerRB.linearVelocity.y, movementDir.z);
 
