@@ -10,6 +10,23 @@ public class PlayerInventory : MonoBehaviour
     [SerializeField] private ItemData[] _inventoryList = new ItemData[3];
     [SerializeField] private int _currentlySelectedItemIndex;
 
+    private PlayerInputHandler _pInput;
+
+    private void Awake()
+    {
+        _pInput = GetComponent<PlayerInputHandler>();
+    }
+
+    private void OnEnable()
+    {
+        _pInput.OnInventorySwitch += ChangeSlot;
+    }
+
+    private void OnDisable()
+    {
+        _pInput.OnInventorySwitch -= ChangeSlot;
+    }
+
     public ItemData[] GetInventoryList()
     {
         return _inventoryList;
@@ -33,6 +50,7 @@ public class PlayerInventory : MonoBehaviour
                 if (_inventoryList[i] == null)
                 {
                     _inventoryList[i] = itemToAdd.GetData();
+                    UIManager.instance.InsertItemIcon(i, itemToAdd.GetData().ItemIcon);
                     break;
                 }
             }
@@ -44,6 +62,29 @@ public class PlayerInventory : MonoBehaviour
         ItemData ReplacedItem = _inventoryList[_currentlySelectedItemIndex];
         Instantiate(ReplacedItem.ItemPrefab, itemToReplace.gameObject.transform.parent);
         _inventoryList[_currentlySelectedItemIndex] = itemToReplace.GetData();
+        UIManager.instance.InsertItemIcon(_currentlySelectedItemIndex, itemToReplace.GetData().ItemIcon);
+    }
+
+    private void ChangeSlot()
+    {
+        switch (_currentlySelectedItemIndex)
+        {
+            case 0:
+                _currentlySelectedItemIndex = 1;
+                break;
+            case 1:
+                _currentlySelectedItemIndex = 2;
+                break;
+            case 2:
+                _currentlySelectedItemIndex = 0;
+                break;
+            default:
+                _currentlySelectedItemIndex = 0;
+                break;
+
+        }
+
+        UIManager.instance.SelectItemSlot(_currentlySelectedItemIndex);
     }
 
 }

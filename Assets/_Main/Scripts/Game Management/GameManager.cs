@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
-    [SerializeField] private bool isKeyObtained = false;
+    [SerializeField] private int NoOfRoomsToGenerate = 30;
 
     public static GameManager instance;
 
@@ -18,13 +18,8 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void ToggleKeyObtained() //Prompt Key Collection
+    public int GetNoOfRoomsToGenerate()
     {
-        isKeyObtained = true;
-    }
-
-    public bool GetKeyStatus() //Check Status of Key
-    {
-        return isKeyObtained;
+        return NoOfRoomsToGenerate;
     }
 }

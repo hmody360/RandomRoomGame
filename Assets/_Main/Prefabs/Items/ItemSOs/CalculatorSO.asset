@@ -15,7 +15,8 @@ MonoBehaviour:
   itemId: 3
   itemName: Calculator
   itemDescription: This reminds me of Math's class...Wasn't I going there?
-  itemIcon: {fileID: 0}
+  itemIcon: {fileID: 21300000, guid: 89bebcc74e079394e87dbb748e944ef4, type: 3}
+  itemPrefab: {fileID: 2654248324525084723, guid: 65683bc760e7b04489fbaaab2e53d038, type: 3}
   itemPickupSound: {fileID: 8300000, guid: 7ef46b33d471db0459b9ddfa2dc4d173, type: 3}
   interactionAnimation: {fileID: 7400000, guid: f708c32719012f7429e648e2f8626a86, type: 2}
-  isPickable: 0
+  isPickable: 1

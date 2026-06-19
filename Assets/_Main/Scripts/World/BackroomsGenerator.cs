@@ -8,7 +8,6 @@ public class BackroomsGenerator : MonoBehaviour
     public GameObject levelParent;
     public float roomSize;
     public int roomAmount;
-    public float keyGroundOffset = 2;
 
     [Header("Prefabs")]
     public GameObject[] startingRooms;
@@ -25,6 +24,10 @@ public class BackroomsGenerator : MonoBehaviour
 
     private void Start()
     {
+        if(GameManager.instance != null)
+        {
+            GameManager.instance.GetNoOfRoomsToGenerate();
+        }
         GenerateLevel();
         RemoveLeftoverDoors();
     }

@@ -15,7 +15,7 @@ public class Locker : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        if (GameManager.instance != null && GameManager.instance.GetKeyStatus())
+        if (GameManager.instance != null)
         {
             UIManager.instance.StartPromptCoroutine(5, "You Win...");
             _collider.enabled = false;
