@@ -10,13 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 2c738ff42c14af9418e0775038fe8e49, type: 3}
-  m_Name: KeySO
+  m_Name: CalculatorSO
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
-  itemId: 0
-  itemName: Key
-  itemDescription: A key? this might be for the locker!
+  itemId: 3
+  itemName: Calculator
+  itemDescription: This reminds me of Math's class...Wasn't I going there?
   itemIcon: {fileID: 0}
-  itemPrefab: {fileID: 5771140581114197997, guid: e3fdba3c1a4e80c4d85e3a07fdb952e3, type: 3}
-  itemPickupSound: {fileID: 8300000, guid: 3c82664ed8e49624aa97882ed60d7de5, type: 3}
-  interactionAnimation: {fileID: 7400000, guid: 1d58fbb7c99b6ec49b86597db00d8ad0, type: 2}
-  isPickable: 1
+  itemPickupSound: {fileID: 8300000, guid: 7ef46b33d471db0459b9ddfa2dc4d173, type: 3}
+  interactionAnimation: {fileID: 7400000, guid: f708c32719012f7429e648e2f8626a86, type: 2}
+  isPickable: 0

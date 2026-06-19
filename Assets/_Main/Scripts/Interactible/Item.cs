@@ -4,7 +4,8 @@ using UnityEngine;
 public class Item : MonoBehaviour, IInteractable
 {
 
-    [SerializeField] public ItemData data;
+    [SerializeField] private ItemData data;
+
     private Collider _collider;
     private AudioSource _audioSource;
     private MeshRenderer _meshRenderer;
@@ -46,11 +47,16 @@ public class Item : MonoBehaviour, IInteractable
             {
                 _collider.enabled = false;
                 _meshRenderer.enabled = false;
-                GameManager.instance.ToggleKeyObtained();
+                GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInventory>().AddItem(this);
                 Destroy(this.gameObject, 1.5f);
             }
         }
        
+    }
+
+    public ItemData GetData()
+    {
+        return data;
     }
 
     private IEnumerator InteractionEnum()
@@ -61,7 +67,7 @@ public class Item : MonoBehaviour, IInteractable
 
         if (data.IsPickable)
         {
-            GameManager.instance.ToggleKeyObtained();
+            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInventory>().AddItem(this);
             Destroy(this.gameObject);
         }
         else

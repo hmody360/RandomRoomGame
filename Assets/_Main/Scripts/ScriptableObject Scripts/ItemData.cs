@@ -8,6 +8,7 @@ public class ItemData : ScriptableObject
     [SerializeField] private string itemName;
     [SerializeField] private string itemDescription;
     [SerializeField] private Image itemIcon;
+    [SerializeField] private GameObject itemPrefab;
     [SerializeField] private AudioClip itemPickupSound;
     [SerializeField] private AnimationClip interactionAnimation;
     [SerializeField] private bool isPickable;
@@ -15,6 +16,7 @@ public class ItemData : ScriptableObject
     public int ItemID => itemId;
     public string ItemName => itemName;
     public Image ItemIcon => itemIcon;
+    public GameObject ItemPrefab => itemPrefab;
     public string ItemDescription => itemDescription;
     public AudioClip ItemPickupSound => itemPickupSound;
     public AnimationClip InteractionAnimation => interactionAnimation;

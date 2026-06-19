@@ -290,9 +290,10 @@ GameObject:
   - component: {fileID: 8504923284359789041}
   - component: {fileID: 153184983865307866}
   - component: {fileID: 8815496022902134423}
+  - component: {fileID: 4118193612275776730}
   m_Layer: 0
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -452,7 +453,7 @@ MonoBehaviour:
   jumpForce: 4
   rotationSpeed: 10
   _groundCheckerOffset: -0.9
-  _groundCheckerRadius: 0.3
+  _groundCheckerRadius: 0.25
   _groundLayer:
     serializedVersion: 2
     m_Bits: 64
@@ -479,6 +480,18 @@ MonoBehaviour:
   _interactableMask:
     serializedVersion: 2
     m_Bits: 448
+--- !u!114 &4118193612275776730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7029913937856689692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f0962d63534644844badb93561c095d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerInventory
 --- !u!1 &8184561736306985589
 GameObject:
   m_ObjectHideFlags: 0

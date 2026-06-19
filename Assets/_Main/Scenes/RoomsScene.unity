@@ -1616,7 +1616,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 393332676787101324, guid: e94553994e361b3458844f654f1ff7ae, type: 3}
       propertyPath: roomAmount
-      value: 3
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 393332676787101324, guid: e94553994e361b3458844f654f1ff7ae, type: 3}
       propertyPath: levelParent
@@ -1624,7 +1624,7 @@ PrefabInstance:
       objectReference: {fileID: 2124452287}
     - target: {fileID: 393332676787101324, guid: e94553994e361b3458844f654f1ff7ae, type: 3}
       propertyPath: randomItemPrefabs.Array.size
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 393332676787101324, guid: e94553994e361b3458844f654f1ff7ae, type: 3}
       propertyPath: 'randomItemPrefabs.Array.data[0]'
@@ -1633,7 +1633,7 @@ PrefabInstance:
     - target: {fileID: 393332676787101324, guid: e94553994e361b3458844f654f1ff7ae, type: 3}
       propertyPath: 'randomItemPrefabs.Array.data[1]'
       value: 
-      objectReference: {fileID: 8766555487732042720, guid: 0af36556da6a9bf488df07cad9061d37, type: 3}
+      objectReference: {fileID: 2654248324525084723, guid: 65683bc760e7b04489fbaaab2e53d038, type: 3}
     - target: {fileID: 393332676787101324, guid: e94553994e361b3458844f654f1ff7ae, type: 3}
       propertyPath: 'randomItemPrefabs.Array.data[2]'
       value: 

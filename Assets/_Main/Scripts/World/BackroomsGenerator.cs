@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.AI.Navigation;
 using UnityEngine;
 
 public class BackroomsGenerator : MonoBehaviour
@@ -20,6 +21,7 @@ public class BackroomsGenerator : MonoBehaviour
     private Dictionary<Vector2Int, GameObject> _grid = new Dictionary<Vector2Int, GameObject>();
     private List<(Vector2Int pos, Door door)> availableDoors = new List<(Vector2Int, Door)>();
     private List<ItemSpot> availableItemSpots = new List<ItemSpot>();
+    private NavMeshSurface _levelNavMeshSurface;
 
     private void Start()
     {
@@ -33,11 +35,13 @@ public class BackroomsGenerator : MonoBehaviour
         Vector2Int startPos = Vector2Int.zero;
         GameObject startRoom = SpawnRoom(GetRandomPrefab(startingRooms), startPos);
 
+        _levelNavMeshSurface = startRoom.GetComponent<NavMeshSurface>(); // Get the NavMeshSurface from the first room
+
         _grid.Add(startPos, startRoom); //Add the room using its vectorial postion and the room as a gameObject
 
         AddDoors(startPos, startRoom.GetComponentsInChildren<Door>()); //add the room's doors to have them checked later for other rooms
 
-        if(roomAmount < 3) //reset to the least logical room amount
+        if (roomAmount < 3) //reset to the least logical room amount
         {
             roomAmount = 3;
         }
@@ -64,14 +68,14 @@ public class BackroomsGenerator : MonoBehaviour
             connectingRoomsToAdd--; //After adding the room decrease the counter
         }
 
-        while(availableDoors.Count > 0) //Adding the final room in an available grid spot.
+        while (availableDoors.Count > 0) //Adding the final room in an available grid spot.
         {
             var openDoor = GetRandomFromList(availableDoors);
             availableDoors.Remove(openDoor);
 
             Vector2Int newPos = openDoor.pos + DirectionToVector(openDoor.door.direction);
 
-            if(_grid.ContainsKey(newPos))
+            if (_grid.ContainsKey(newPos))
                 continue;
 
             GameObject finalRoom = SpawnRoom(GetRandomPrefab(endingRooms), newPos);
@@ -83,24 +87,30 @@ public class BackroomsGenerator : MonoBehaviour
         }
 
         //Placing the Key at a random spot
-        if(keyPrefab != null)
+        if (keyPrefab != null)
         {
             PlaceItemRandom(keyPrefab);
         }
 
         //Place Random Items
-        if(randomItemPrefabs != null && randomItemPrefabs.Length > 0)
+        if (randomItemPrefabs != null && randomItemPrefabs.Length > 0)
         {
-            foreach( GameObject obj in randomItemPrefabs)
+            foreach (GameObject obj in randomItemPrefabs)
             {
-                if(obj != null)
+                if (obj != null)
                 {
                     PlaceItemRandom(obj);
                 }
-                
+
             }
         }
-        
+
+        //Baking the level's navmesh after its creation
+        if(_levelNavMeshSurface != null)
+        {
+            _levelNavMeshSurface.BuildNavMesh();
+        }
+
     }
 
     private void RemoveLeftoverDoors() //Patch Doors that are not connected to a room by checking if the direction has no grid spot adjacent to it.
