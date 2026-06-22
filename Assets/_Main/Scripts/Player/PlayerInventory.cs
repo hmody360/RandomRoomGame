@@ -65,6 +65,12 @@ public class PlayerInventory : MonoBehaviour
         UIManager.instance.InsertItemIcon(_currentlySelectedItemIndex, itemToReplace.GetData().ItemIcon);
     }
 
+    public void RemoveCurrentItem()
+    {
+        _inventoryList[_currentlySelectedItemIndex] = null;
+        UIManager.instance.RemoveItemIcon(_currentlySelectedItemIndex);
+    }
+
     private void ChangeSlot()
     {
         switch (_currentlySelectedItemIndex)

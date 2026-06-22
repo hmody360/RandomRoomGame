@@ -55,7 +55,10 @@ public class Typewriter : MonoBehaviour
         Cursor.visible = true;
     }
 
-    
+    public static void EmptyMessageList()
+    {
+        _instance._msgList.Clear();
+    }
 
     public void WriteNextMessageInQueue()
     {

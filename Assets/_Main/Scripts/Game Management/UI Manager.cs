@@ -85,4 +85,13 @@ public class UIManager : MonoBehaviour
             _ImageIconList[slot].enabled = true;
         }
     }
+
+    public void RemoveItemIcon(int slot)
+    {
+        if (slot >= 0 && slot < _ImageIconList.Length)
+        {
+            _ImageIconList[slot].sprite = null;
+            _ImageIconList[slot].enabled = false;
+        }
+    }
 }

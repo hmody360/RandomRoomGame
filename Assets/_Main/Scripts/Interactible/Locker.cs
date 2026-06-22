@@ -18,9 +18,11 @@ public class Locker : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        if (_pInventory != null && _pInventory.GetCurrentlySelectedItem().ItemID == requiredItem.ItemID)
+        ItemData currentItem = _pInventory.GetCurrentlySelectedItem();
+        if (_pInventory != null && currentItem != null && currentItem.ItemID == requiredItem.ItemID)
         {
             _collider.enabled = false;
+            _pInventory.RemoveCurrentItem();
             //Open Locker
         }
         else

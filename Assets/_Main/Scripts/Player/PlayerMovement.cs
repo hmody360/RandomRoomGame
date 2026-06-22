@@ -98,7 +98,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void HandleJump()//check if jump button is pressed and player is on ground
     {
-        if(_isGrounded)
+        if(_isGrounded && _canMove)
         {
             _playerRB.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             JumpAS.PlayOneShot(JumpAS.clip);

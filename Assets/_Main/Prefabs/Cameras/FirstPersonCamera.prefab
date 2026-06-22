@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 7353390605152361408}
   - component: {fileID: 1474426896044328005}
   - component: {fileID: 4604584186743868364}
+  - component: {fileID: 6073928177317194157}
   m_Layer: 0
   m_Name: FirstPersonCamera
   m_TagString: Untagged
@@ -185,6 +186,18 @@ MonoBehaviour:
         DecelTime: 0.2
   PlayerIndex: -1
   AutoEnableInputs: 1
+--- !u!114 &6073928177317194157
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1047151691249636959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4c999e8373d54344c84ac107665872d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!1 &1954903237411695263
 GameObject:
   m_ObjectHideFlags: 0

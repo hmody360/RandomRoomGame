@@ -23,31 +23,8 @@ public class Item : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-
+        _collider.enabled = false;
         AddAndDisplayItemMessages();
-
-        if (data.ItemPickupSound != null && _audioSource != null)
-        {
-            _audioSource.PlayOneShot(data.ItemPickupSound);
-        }
-
-        if(_itemAnimator != null && _interactionCoroutine == null && data.InteractionAnimation != null)
-        {
-            Debug.Log("Yes Animation Interaction");
-            _interactionCoroutine = StartCoroutine(InteractionEnum());
-            _itemAnimator.SetTrigger("Interact");
-        }
-        else
-        {
-            Debug.Log("No Animation Interaction");
-            if (data.IsPickable)
-            {
-                _collider.enabled = false;
-                _meshRenderer.enabled = false;
-                GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInventory>().AddItem(this);
-                Destroy(this.gameObject, 1.5f);
-            }
-        }
        
     }
 
@@ -60,22 +37,60 @@ public class Item : MonoBehaviour, IInteractable
     {
         if (data.ItemMessages != null && data.ItemMessages.Count > 0)
         {
+            Typewriter.EmptyMessageList();
             foreach (string message in data.ItemMessages)
             {
                 if (message.Length > 0)
                 {
-                    Typewriter.AddMessage(message);
+                    if (message == data.ItemMessages[^1])
+                    {
+                        Typewriter.AddMessage(message, StartInteraction);
+                    }
+                    else
+                    {
+                        Typewriter.AddMessage(message);
+                    }
+                    
                 }
             }
 
             Typewriter.Activate();
         }
+        else
+        {
+          StartInteraction();
+        }
+    }
+
+    private void StartInteraction()
+    {
+        if (data.ItemPickupSound != null && _audioSource != null)
+        {
+            _audioSource.PlayOneShot(data.ItemPickupSound);
+        }
+
+        if (_itemAnimator != null && _interactionCoroutine == null && data.InteractionAnimation != null)
+        {
+            Debug.Log("Yes Animation Interaction");
+            _interactionCoroutine = StartCoroutine(InteractionEnum());
+            _itemAnimator.SetTrigger("Interact");
+        }
+        else
+        {
+            Debug.Log("No Animation Interaction");
+            if (data.IsPickable)
+            {
+                _meshRenderer.enabled = false;
+                GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInventory>().AddItem(this);
+                Destroy(this.gameObject, 1.5f);
+            }
+
+            _collider.enabled = true;
+        }
     }
 
     private IEnumerator InteractionEnum()
     {
-        _collider.enabled = false;
-
         yield return new WaitForSeconds(data.InteractionAnimation.length);
 
         if (data.IsPickable)
