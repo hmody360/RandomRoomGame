@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -6,7 +7,7 @@ public class ItemData : ScriptableObject
 {
     [SerializeField] private int itemId;
     [SerializeField] private string itemName;
-    [SerializeField] private string itemDescription;
+    [SerializeField] private List<string> itemMessages;
     [SerializeField] private Sprite itemIcon;
     [SerializeField] private GameObject itemPrefab;
     [SerializeField] private AudioClip itemPickupSound;
@@ -17,7 +18,7 @@ public class ItemData : ScriptableObject
     public string ItemName => itemName;
     public Sprite ItemIcon => itemIcon;
     public GameObject ItemPrefab => itemPrefab;
-    public string ItemDescription => itemDescription;
+    public List<string> ItemMessages => itemMessages;
     public AudioClip ItemPickupSound => itemPickupSound;
     public AnimationClip InteractionAnimation => interactionAnimation;
     public bool IsPickable => isPickable;

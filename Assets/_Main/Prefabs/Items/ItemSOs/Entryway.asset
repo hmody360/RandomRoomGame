@@ -14,7 +14,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::ItemData
   itemId: 1
   itemName: box?
-  itemDescription: Did I come from here?
+  itemMessages:
+  - This is where I fell from...
+  - How did I even get here?
+  - I have to find a way out!
   itemIcon: {fileID: 0}
+  itemPrefab: {fileID: 0}
   itemPickupSound: {fileID: 0}
+  interactionAnimation: {fileID: 0}
   isPickable: 0

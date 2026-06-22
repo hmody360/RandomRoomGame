@@ -6,23 +6,26 @@ public class Locker : MonoBehaviour, IInteractable
 {
     public string ActionName => "Open Locker";
 
+    [SerializeField] private ItemData requiredItem;
     private Collider _collider;
+    private PlayerInventory _pInventory;
 
     private void Awake()
     {
         _collider = GetComponent<Collider>();
+        _pInventory = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerInventory>();
     }
 
     public void Interact()
     {
-        if (GameManager.instance != null)
+        if (_pInventory != null && _pInventory.GetCurrentlySelectedItem().ItemID == requiredItem.ItemID)
         {
-            UIManager.instance.StartPromptCoroutine(5, "You Win...");
             _collider.enabled = false;
+            //Open Locker
         }
         else
         {
-            UIManager.instance.StartPromptCoroutine(5, "Find The Key!");
+            //Prompt to find the key
         }
     }
 }

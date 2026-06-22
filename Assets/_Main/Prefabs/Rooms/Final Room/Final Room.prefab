@@ -266,6 +266,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f51a2c182a3a1804b80dd3b15fc3579d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Locker
+  requiredItem: {fileID: 11400000, guid: 0eaf8b4cb00211944be01bf6e02713c0, type: 2}
 --- !u!1 &3295171710061778587
 GameObject:
   m_ObjectHideFlags: 0

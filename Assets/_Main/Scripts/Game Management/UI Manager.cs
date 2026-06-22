@@ -5,9 +5,8 @@ using UnityEngine.UI;
 
 public class UIManager : MonoBehaviour
 {
-    [Header("Prompt UI Elements")]
-    [SerializeField] private TextMeshProUGUI _promptText;
-    [SerializeField] private GameObject _promptContainer;
+    [Header("Speech UI Elements")]
+    [SerializeField] private GameObject _speechContainer;
 
     [Header("Interact UI Elements")]
     [SerializeField] private TextMeshProUGUI _interactText;
@@ -18,8 +17,6 @@ public class UIManager : MonoBehaviour
     [SerializeField] private Sprite _selectedSlot;
     [SerializeField] private Image[] _ImageSlotList;
     [SerializeField] private Image[] _ImageIconList;
-
-    private Coroutine PromptTextCoroutine;
 
     public static UIManager instance;
     private void Awake()
@@ -35,33 +32,14 @@ public class UIManager : MonoBehaviour
     }
 
     // Prompt Section
-    private void ShowPrompt(string text) //Set Text and Show it
+    public void ShowSpeechBubble() //Show Speech Bubble UI
     {
-        _promptText.text = text;
-        _promptContainer.SetActive(true);
+        _speechContainer.SetActive(true);
     }
 
-    private void HidePrompt() //Set Text To Blank and Hide it
+    public void HideSpeechBubble() //Set Text To Blank and Hide it
     {
-        _promptText.text = "";
-        _promptContainer.SetActive(false);
-    }
-
-    public void StartPromptCoroutine(float time, string text) //Start the Text Prompt Coroutine with a set time and text
-    {
-        if (PromptTextCoroutine == null)
-        {
-            PromptTextCoroutine = StartCoroutine(ShowPromptText(time, text));
-        }
-
-    }
-
-    private IEnumerator ShowPromptText(float time, string text) // The Text Prompt Coroutine with a set time and text
-    {
-        ShowPrompt(text);
-        yield return new WaitForSeconds(time);
-        HidePrompt();
-        PromptTextCoroutine = null;
+        _speechContainer.SetActive(false);
     }
 
     // Interaction Section

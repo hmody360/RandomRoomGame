@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private bool _isGrounded;
     [SerializeField] private bool _isWalking;
     [SerializeField] private bool _wantsToSprint;
+    [SerializeField] private bool _canMove = true;
 
     [Header("AudioSources")]
     [SerializeField] AudioSource WalkAS;
@@ -47,6 +48,7 @@ public class PlayerMovement : MonoBehaviour
         _targetRoation = transform.rotation;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        _canMove = true;
     }
 
     private void Update()
@@ -57,7 +59,10 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        moveAndRotate();
+        if (_canMove)
+        {
+            moveAndRotate();
+        }
     }
 
     private void OnEnable()
@@ -65,6 +70,9 @@ public class PlayerMovement : MonoBehaviour
         _input.OnJump += HandleJump;
         _input.OnSprint += HandleSprint;
         _input.OnStopSprint += HandleStopSprint;
+
+        Typewriter.OnMessageDisplay += DisableMovement;
+        Typewriter.OnMessageStop += EnableMovement;
     }
 
     private void OnDisable()
@@ -72,6 +80,19 @@ public class PlayerMovement : MonoBehaviour
         _input.OnJump -= HandleJump;
         _input.OnSprint -= HandleSprint;
         _input.OnStopSprint -= HandleStopSprint;
+
+        Typewriter.OnMessageDisplay -= DisableMovement;
+        Typewriter.OnMessageStop -= EnableMovement;
+    }
+
+    private void EnableMovement()
+    {
+        _canMove = true;
+    }
+
+    private void DisableMovement()
+    {
+        _canMove = false;
     }
 
 

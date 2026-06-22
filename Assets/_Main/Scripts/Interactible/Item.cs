@@ -24,10 +24,7 @@ public class Item : MonoBehaviour, IInteractable
     public void Interact()
     {
 
-        if (data.ItemDescription != null && data.ItemDescription.Length > 0)
-        {
-            UIManager.instance.StartPromptCoroutine(3 ,data.ItemDescription);
-        }
+        AddAndDisplayItemMessages();
 
         if (data.ItemPickupSound != null && _audioSource != null)
         {
@@ -57,6 +54,22 @@ public class Item : MonoBehaviour, IInteractable
     public ItemData GetData()
     {
         return data;
+    }
+
+    private void AddAndDisplayItemMessages()
+    {
+        if (data.ItemMessages != null && data.ItemMessages.Count > 0)
+        {
+            foreach (string message in data.ItemMessages)
+            {
+                if (message.Length > 0)
+                {
+                    Typewriter.AddMessage(message);
+                }
+            }
+
+            Typewriter.Activate();
+        }
     }
 
     private IEnumerator InteractionEnum()
