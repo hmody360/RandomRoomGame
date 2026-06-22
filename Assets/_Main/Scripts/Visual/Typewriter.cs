@@ -53,11 +53,14 @@ public class Typewriter : MonoBehaviour
         OnMessageDisplay?.Invoke();
         Cursor.lockState = CursorLockMode.Confined;
         Cursor.visible = true;
+
     }
 
     public static void EmptyMessageList()
     {
         _instance._msgList.Clear();
+        _instance._msgIndex = 0;
+        _instance._currentMsg = null;
     }
 
     public void WriteNextMessageInQueue()
