@@ -9,8 +9,11 @@ public class PlayerInventory : MonoBehaviour
 
     [SerializeField] private ItemData[] _inventoryList = new ItemData[3];
     [SerializeField] private int _currentlySelectedItemIndex;
+    [SerializeField] private AudioSource _audioSource;
+    [SerializeField] private AudioClip _switchEmptySlotClip;
 
     private PlayerInputHandler _pInput;
+    
 
     private void Awake()
     {
@@ -91,6 +94,19 @@ public class PlayerInventory : MonoBehaviour
         }
 
         UIManager.instance.SelectItemSlot(_currentlySelectedItemIndex);
+        if(_audioSource != null && _switchEmptySlotClip != null)
+        {
+            ItemData currentItem = GetCurrentlySelectedItem();
+            if (currentItem != null)
+            {
+                _audioSource.PlayOneShot((currentItem.ItemSelectSound != null) ? currentItem.ItemSelectSound : _switchEmptySlotClip);
+
+            }
+            else
+            {
+                _audioSource.PlayOneShot(_switchEmptySlotClip);
+            }
+        }
     }
 
 }

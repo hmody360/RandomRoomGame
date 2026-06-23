@@ -1,4 +1,5 @@
 using NUnit.Framework;
+using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -15,6 +16,8 @@ public class InteractibleObject : MonoBehaviour, IInteractable
 
     [SerializeField] private AudioClip _refusalAudioClip;
     [SerializeField] private AudioClip _acceptanceAudioClip;
+
+    [SerializeField] private string _refusalAnimTriggerName = "";
     
     private Collider _collider;
     private PlayerInventory _pInventory;
@@ -42,13 +45,12 @@ public class InteractibleObject : MonoBehaviour, IInteractable
         else
         {
             DisableCollider();
-            AddTextSpeech(_refusalTextList);
+            AddTextSpeech(_refusalTextList, EnableCollider);
             ShowInteraction(false);
-            EnableCollider();
         }
     }
 
-    private void AddTextSpeech(string[] textList)
+    private void AddTextSpeech(string[] textList, Action callBackAction = null)
     {
         if(textList != null)
         {
@@ -57,7 +59,14 @@ public class InteractibleObject : MonoBehaviour, IInteractable
             {
                 if (!string.IsNullOrEmpty(text))
                 {
-                    Typewriter.AddMessage(text);
+                    if (text == textList[^1])
+                    {
+                        Typewriter.AddMessage(text, callBackAction);
+                    }
+                    else
+                    {
+                        Typewriter.AddMessage(text);
+                    }
                 }
             }
             Typewriter.Activate();
@@ -88,6 +97,7 @@ public class InteractibleObject : MonoBehaviour, IInteractable
             if (_animator != null)
             {
                 _animator.SetBool("Status", false);
+                _animator.SetTrigger(_refusalAnimTriggerName);
             }
         }
     }

@@ -11,6 +11,7 @@ public class ItemData : ScriptableObject
     [SerializeField] private Sprite itemIcon;
     [SerializeField] private GameObject itemPrefab;
     [SerializeField] private AudioClip itemPickupSound;
+    [SerializeField] private AudioClip itemSelectSound;
     [SerializeField] private AnimationClip interactionAnimation;
     [SerializeField] private bool isPickable;
 
@@ -20,6 +21,7 @@ public class ItemData : ScriptableObject
     public GameObject ItemPrefab => itemPrefab;
     public List<string> ItemMessages => itemMessages;
     public AudioClip ItemPickupSound => itemPickupSound;
+    public AudioClip ItemSelectSound => itemSelectSound;
     public AnimationClip InteractionAnimation => interactionAnimation;
     public bool IsPickable => isPickable;
 
