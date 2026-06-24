@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c738ff42c14af9418e0775038fe8e49, type: 3}
+  m_Name: GameboySO
+  m_EditorClassIdentifier: Assembly-CSharp::ItemData
+  itemId: 6
+  itemName: Gameboy
+  itemMessages:
+  - My Gameboy?
+  - Didn't I lose it? did it vanish to here?
+  - 'I remember lending it to @$#@. '
+  - He played on it more than I did, heh.
+  - I,ll take it with me.
+  itemIcon: {fileID: 21300000, guid: 6e2ee324f0a6f21409bb2b6b34be613d, type: 3}
+  itemPrefab: {fileID: 0}
+  itemPickupSound: {fileID: 8300000, guid: ddf7dcfa9f6871545b0e6cc805e5cf9b, type: 3}
+  itemSelectSound: {fileID: 8300000, guid: ddf7dcfa9f6871545b0e6cc805e5cf9b, type: 3}
+  interactionAnimation: {fileID: 7400000, guid: 7580b26e50be2e4449a1272c87432736, type: 2}
+  isPickable: 1

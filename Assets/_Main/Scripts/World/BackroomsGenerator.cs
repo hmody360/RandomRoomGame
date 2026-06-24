@@ -168,7 +168,7 @@ public class BackroomsGenerator : MonoBehaviour
     {
         int SpotIndex = Random.Range(0, availableItemSpots.Count - 1);
         ItemSpot SpotToPlace = availableItemSpots[SpotIndex];
-        Instantiate(itemObj, SpotToPlace.transform.position,itemObj.transform.rotation, SpotToPlace.transform);
+        Instantiate(itemObj, SpotToPlace.transform.position + (Vector3.up * 0.05f) ,itemObj.transform.rotation, SpotToPlace.transform);
         SpotToPlace.TriggerOccupation();
         availableItemSpots.RemoveAt(SpotIndex);
     }
