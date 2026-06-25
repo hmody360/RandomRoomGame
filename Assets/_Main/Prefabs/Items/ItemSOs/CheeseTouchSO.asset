@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c738ff42c14af9418e0775038fe8e49, type: 3}
+  m_Name: CheeseTouchSO
+  m_EditorClassIdentifier: Assembly-CSharp::ItemData
+  itemId: 5
+  itemName: Cheese
+  itemMessages:
+  - Ewww...
+  - That piece of cheese must be cursed or something.
+  - It's sooo....Moldy UGH!
+  - I'm not touching that...
+  itemIcon: {fileID: 21300000, guid: edf906a44958b654099a34cbf0079dd4, type: 3}
+  itemPrefab: {fileID: 4344825972259233659, guid: 01cb3f518fc49f54f90aaec1eab807f8, type: 3}
+  itemPickupSound: {fileID: 8300000, guid: 78e02cf5eae37a84c9aac40d84ae00d9, type: 3}
+  itemSelectSound: {fileID: 0}
+  interactionAnimation: {fileID: 0}
+  isPickable: 0

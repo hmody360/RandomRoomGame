@@ -46,8 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::BackroomsGenerator
   levelParent: {fileID: 0}
   roomSize: 6
-  roomAmount: 30
-  keyGroundOffset: 2
+  roomAmount: 10
   startingRooms:
   - {fileID: 2803058164744705685, guid: 14e5b57b5bbb7e1439ffd60fcbbefa25, type: 3}
   connectingRooms:
@@ -59,3 +58,12 @@ MonoBehaviour:
   - {fileID: 2971948496822234718, guid: 2b94c0cfed055f3488945c462ded393d, type: 3}
   wallPrefab: {fileID: 3257297053010637668, guid: cfa428ba3642b044792ea6873f96e77e, type: 3}
   keyPrefab: {fileID: 5771140581114197997, guid: e3fdba3c1a4e80c4d85e3a07fdb952e3, type: 3}
+  randomItemPrefabs:
+  - {fileID: 7822499543555164494, guid: bd779696b1404c843b1ac201732d442f, type: 3}
+  - {fileID: 2654248324525084723, guid: 65683bc760e7b04489fbaaab2e53d038, type: 3}
+  - {fileID: 5518439270200800162, guid: 46e9fdbbe92804a4385af41ab77f831e, type: 3}
+  - {fileID: 4344825972259233659, guid: 01cb3f518fc49f54f90aaec1eab807f8, type: 3}
+  - {fileID: 6901692825783445596, guid: 2e165a176c1081548b2910b8d78253ea, type: 3}
+  - {fileID: 227598301632803176, guid: 0f8ee31f22c85684db3aa9509efa0bb2, type: 3}
+  - {fileID: 3042777369339144982, guid: 27cf385f07ddd4240b0416680b74ac0a, type: 3}
+  - {fileID: 1462332870551339230, guid: ee3c8d7ad7058004498afe2c15fac907, type: 3}

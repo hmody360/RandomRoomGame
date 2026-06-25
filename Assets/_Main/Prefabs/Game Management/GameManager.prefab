@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8738845930355330211}
   - component: {fileID: 8208211298635389764}
+  - component: {fileID: 8416591465714844198}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -44,3 +45,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5e7ff94bbf0c30d4e8c1f416f0c33c8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  NoOfRoomsToGenerate: 10
+  _roomNoSlider: {fileID: 0}
+--- !u!114 &8416591465714844198
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 483815530477187917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d84acefb5aa32d4e85f2bb9f37ccef4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::DDOL

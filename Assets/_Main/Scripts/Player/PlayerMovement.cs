@@ -3,21 +3,34 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Speeds")]
-    public float speed;
+    public float currentSpeed;
+    public float walkSpeed;
+    public float sprintSpeed;
     public float jumpForce;
     public float rotationSpeed;
 
+    [Header("Ground Checking")]
     [SerializeField] private float _groundCheckerOffset = -0.9f;
     [SerializeField] private float _groundCheckerRadius = 0.3f;
     [SerializeField] private LayerMask _groundLayer;
 
+    [Header("Indicators")]
     [SerializeField] private bool _isGrounded;
     [SerializeField] private bool _isWalking;
+    [SerializeField] private bool _wantsToSprint;
+    [SerializeField] private bool _canMove = true;
+
+    [Header("AudioSources")]
+    [SerializeField] AudioSource WalkAS;
+    [SerializeField] AudioSource JumpAS;
+
+    [Header("AudioClips")]
+    [SerializeField] AudioClip WalkSFX;
+    [SerializeField] AudioClip SprintSFX;
 
 
     private Rigidbody _playerRB;
     private PlayerInputHandler _input;
-    private AudioSource _walkingAS;
     private Transform _cameraTransform;
     private Quaternion _targetRoation;
     private Vector3 _playerDirection;
@@ -26,8 +39,8 @@ public class PlayerMovement : MonoBehaviour
     {
         _playerRB = GetComponent<Rigidbody>();
         _input = GetComponent<PlayerInputHandler>();
-        _walkingAS = GetComponent<AudioSource>();
         _cameraTransform = Camera.main.transform;
+        currentSpeed = walkSpeed;
     }
 
     private void Start()
@@ -35,28 +48,87 @@ public class PlayerMovement : MonoBehaviour
         _targetRoation = transform.rotation;
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+        _canMove = true;
     }
 
     private void Update()
     {
         CheckGround();
+        CheckSprint();
     }
 
     void FixedUpdate()
     {
-        moveAndRotate();
-        HandleJump();
+        if (_canMove)
+        {
+            moveAndRotate();
+        }
+    }
+
+    private void OnEnable()
+    {
+        _input.OnJump += HandleJump;
+        _input.OnSprint += HandleSprint;
+        _input.OnStopSprint += HandleStopSprint;
+
+        Typewriter.OnMessageDisplay += DisableMovement;
+        Typewriter.OnMessageStop += EnableMovement;
+    }
+
+    private void OnDisable()
+    {
+        _input.OnJump -= HandleJump;
+        _input.OnSprint -= HandleSprint;
+        _input.OnStopSprint -= HandleStopSprint;
+
+        Typewriter.OnMessageDisplay -= DisableMovement;
+        Typewriter.OnMessageStop -= EnableMovement;
+    }
+
+    private void EnableMovement()
+    {
+        _canMove = true;
+    }
+
+    private void DisableMovement()
+    {
+        _canMove = false;
     }
 
 
     private void HandleJump()//check if jump button is pressed and player is on ground
     {
-        if(_input.JumpPressed && _isGrounded)
+        if(_isGrounded && _canMove)
         {
             _playerRB.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            JumpAS.PlayOneShot(JumpAS.clip);
         }
 
-        _input.ResetJump();
+    }
+
+    private void HandleSprint()
+    {
+        _wantsToSprint = true;
+    }
+
+    private void HandleStopSprint()
+    {
+        _wantsToSprint = false;
+    }
+
+    private void CheckSprint()
+    {
+        if(_wantsToSprint && _isGrounded)
+        {
+            currentSpeed = sprintSpeed;
+            WalkAS.clip = SprintSFX;
+        }
+        else
+        {
+            currentSpeed = walkSpeed;
+            WalkAS.clip = WalkSFX;
+        }
+        
     }
 
     private void moveAndRotate() //Movement Logic
@@ -66,12 +138,12 @@ public class PlayerMovement : MonoBehaviour
 
         _isWalking = _input.MoveInput.sqrMagnitude > 0.01f && _isGrounded;
 
-        if (_isWalking && !_walkingAS.isPlaying)
+        if (_isWalking && !WalkAS.isPlaying)
         {
-            _walkingAS.Play();
-        }else if (!_isWalking && _walkingAS.isPlaying)
+            WalkAS.Play();
+        }else if (!_isWalking && WalkAS.isPlaying)
         {
-            _walkingAS.Stop();
+            WalkAS.Stop();
         }
 
        //Realtive Camera Movement with rotation
@@ -87,7 +159,7 @@ public class PlayerMovement : MonoBehaviour
 
         _playerDirection = (forwardRealtive + rightRealtive).normalized;
 
-        Vector3 movementDir = _playerDirection * speed;
+        Vector3 movementDir = _playerDirection * currentSpeed;
 
         _playerRB.linearVelocity = new Vector3(movementDir.x, _playerRB.linearVelocity.y, movementDir.z);
 

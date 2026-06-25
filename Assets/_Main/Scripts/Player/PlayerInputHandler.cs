@@ -1,40 +1,81 @@
 using System;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerInputHandler : MonoBehaviour
 {
     public Vector2 MoveInput;
-    public bool JumpPressed;
+
+    public event Action OnJump;
+    public event Action OnInteract;
+    public event Action OnSprint;
+    public event Action OnStopSprint;
+    public event Action OnInventorySwitch;
+    public event Action OnPause;
 
     private PlayerInputActions _input;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Awake()
     {
         _input = new PlayerInputActions();
+    }
+    private void Update()
+    {
+        MoveInput = _input.Player.Move.ReadValue<Vector2>();
     }
 
     private void OnEnable()
     {
         _input.Enable();
 
-        _input.Player.Jump.performed += _ => JumpPressed = true;
+        _input.Player.Jump.performed += HandleJump;
+        _input.Player.Interact.performed += HandleInteract;
+        _input.Player.Sprint.performed += HandleSprint;
+        _input.Player.Sprint.canceled += HandleStopSprint;
+        _input.Player.Previous.performed += HandleInventorySwitch;
+        _input.Player.Pause.performed += HandlePause;
+
     }
 
     private void OnDisable()
     {
         _input.Disable();
 
-        _input.Player.Jump.performed -= _ => JumpPressed = true;
+        _input.Player.Jump.performed -= HandleJump;
+        _input.Player.Interact.performed -= HandleInteract;
+        _input.Player.Sprint.performed -= HandleSprint;
+        _input.Player.Sprint.canceled -= HandleStopSprint;
+        _input.Player.Previous.performed -= HandleInventorySwitch;
+        _input.Player.Pause.performed -= HandlePause;
     }
 
-    private void Update()
+    private void HandleJump(InputAction.CallbackContext ctx)
     {
-        MoveInput = _input.Player.Move.ReadValue<Vector2>();
+        OnJump?.Invoke();
     }
 
-    public void ResetJump()
+    private void HandleInteract(InputAction.CallbackContext ctx)
     {
-        JumpPressed = false;
+        OnInteract?.Invoke();
+    }
+
+    private void HandleSprint(InputAction.CallbackContext ctx)
+    {
+        OnSprint?.Invoke();
+    }
+
+    private void HandleStopSprint(InputAction.CallbackContext ctx)
+    {
+        OnStopSprint?.Invoke();
+    }
+
+    private void HandleInventorySwitch(InputAction.CallbackContext ctx)
+    {
+        OnInventorySwitch?.Invoke();
+    }
+
+    private void HandlePause(InputAction.CallbackContext ctx)
+    {
+        OnPause?.Invoke();
     }
 }

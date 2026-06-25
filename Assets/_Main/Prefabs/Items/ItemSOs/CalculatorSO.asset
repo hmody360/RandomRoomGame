@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c738ff42c14af9418e0775038fe8e49, type: 3}
+  m_Name: CalculatorSO
+  m_EditorClassIdentifier: Assembly-CSharp::ItemData
+  itemId: 3
+  itemName: Calculator
+  itemMessages:
+  - My Calculator...
+  - What's it doing here?
+  - I remember Math class...
+  - It was my favourite...
+  itemIcon: {fileID: 21300000, guid: 89bebcc74e079394e87dbb748e944ef4, type: 3}
+  itemPrefab: {fileID: 2654248324525084723, guid: 65683bc760e7b04489fbaaab2e53d038, type: 3}
+  itemPickupSound: {fileID: 8300000, guid: 7ef46b33d471db0459b9ddfa2dc4d173, type: 3}
+  interactionAnimation: {fileID: 7400000, guid: f708c32719012f7429e648e2f8626a86, type: 2}
+  isPickable: 0
