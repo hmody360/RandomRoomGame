@@ -23,11 +23,13 @@ public class PlayerInventory : MonoBehaviour
     private void OnEnable()
     {
         _pInput.OnInventorySwitch += ChangeSlot;
+        _pInput.OnPause += ToggleGamePause;
     }
 
     private void OnDisable()
     {
         _pInput.OnInventorySwitch -= ChangeSlot;
+        _pInput.OnPause -= ToggleGamePause;
     }
 
     public ItemData[] GetInventoryList()
@@ -106,6 +108,14 @@ public class PlayerInventory : MonoBehaviour
             {
                 _audioSource.PlayOneShot(_switchEmptySlotClip);
             }
+        }
+    }
+
+    private void ToggleGamePause()
+    {
+        if (GameManager.instance != null)
+        {
+            GameManager.instance.ToggleGamePause();
         }
     }
 

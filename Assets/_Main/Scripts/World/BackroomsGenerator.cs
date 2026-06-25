@@ -26,7 +26,7 @@ public class BackroomsGenerator : MonoBehaviour
     {
         if(GameManager.instance != null)
         {
-            GameManager.instance.GetNoOfRoomsToGenerate();
+            roomAmount = GameManager.instance.GetNoOfRoomsToGenerate();
         }
         GenerateLevel();
         RemoveLeftoverDoors();

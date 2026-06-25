@@ -11,6 +11,7 @@ public class PlayerInputHandler : MonoBehaviour
     public event Action OnSprint;
     public event Action OnStopSprint;
     public event Action OnInventorySwitch;
+    public event Action OnPause;
 
     private PlayerInputActions _input;
 
@@ -32,6 +33,7 @@ public class PlayerInputHandler : MonoBehaviour
         _input.Player.Sprint.performed += HandleSprint;
         _input.Player.Sprint.canceled += HandleStopSprint;
         _input.Player.Previous.performed += HandleInventorySwitch;
+        _input.Player.Pause.performed += HandlePause;
 
     }
 
@@ -42,8 +44,9 @@ public class PlayerInputHandler : MonoBehaviour
         _input.Player.Jump.performed -= HandleJump;
         _input.Player.Interact.performed -= HandleInteract;
         _input.Player.Sprint.performed -= HandleSprint;
-        _input.Player.Sprint.canceled += HandleStopSprint;
+        _input.Player.Sprint.canceled -= HandleStopSprint;
         _input.Player.Previous.performed -= HandleInventorySwitch;
+        _input.Player.Pause.performed -= HandlePause;
     }
 
     private void HandleJump(InputAction.CallbackContext ctx)
@@ -69,5 +72,10 @@ public class PlayerInputHandler : MonoBehaviour
     private void HandleInventorySwitch(InputAction.CallbackContext ctx)
     {
         OnInventorySwitch?.Invoke();
+    }
+
+    private void HandlePause(InputAction.CallbackContext ctx)
+    {
+        OnPause?.Invoke();
     }
 }
