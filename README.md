@@ -3,7 +3,7 @@
 ## Description
 
 A Simple Exploration Game Project created as a deliverable for the Savvy Game Studios (Spoilz Gameplay Programmer Skill Assesment)
-**While the skill assesment task is completed among other things, the Game Project os still in progress**
+**While the skill assesment task is completed among other things, the Game Project is still in progress**
 <br></br>
 
 
@@ -14,7 +14,7 @@ A Simple Exploration Game Project created as a deliverable for the Savvy Game St
 - Player Movement & Interaction ☑
 - Item & Item Data Logic ☑
 - Random Item Placement ☑
-- Item Interactions & Animation
+- Item Interactions & Animation ☑
 - HUD UI ☑
 - Inventory System & Item Swtiching ☑
 - Typewriter Self Dialouge System ☑
@@ -24,6 +24,7 @@ A Simple Exploration Game Project created as a deliverable for the Savvy Game St
 
 ## Ongoing:
 - Enemy with Random movement and Jumpscare ☐
+- Post Processing ☐
 - Prolouge Sequence ☐
 - Ending Sequence ☐
 </br></br>
