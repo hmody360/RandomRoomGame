@@ -44,7 +44,7 @@ A Simple Exploration Game Project created as a deliverable for the Savvy Game St
 - Click on The Green Code Button Above.
 - Copy the web URL within the pop up window.
 - Within your the file where you want to save the project in, open Git Bash using Right Click.
-- Type: git clone <repository-url>.
+- Type: git clone (Enter Copied Repository URL Here)
 - After the Project is cloned to your device locally you need to import it in Unity.
 - Open Unity Hub.
 - Click Projects from the Left Menu.
