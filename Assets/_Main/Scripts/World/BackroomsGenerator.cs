@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Unity.AI.Navigation;
+using UnityEditor;
 using UnityEngine;
 
 public class BackroomsGenerator : MonoBehaviour
@@ -17,12 +18,12 @@ public class BackroomsGenerator : MonoBehaviour
     public GameObject keyPrefab;
     public GameObject[] randomItemPrefabs;
 
-    private Dictionary<Vector2Int, GameObject> _grid = new Dictionary<Vector2Int, GameObject>();
+    private Dictionary<Vector2Int, Room> _grid = new();
     private List<(Vector2Int pos, Door door)> availableDoors = new List<(Vector2Int, Door)>();
     private List<ItemSpot> availableItemSpots = new List<ItemSpot>();
     private NavMeshSurface _levelNavMeshSurface;
 
-    private void Start()
+    private void Awake()
     {
         if(GameManager.instance != null)
         {
@@ -32,17 +33,26 @@ public class BackroomsGenerator : MonoBehaviour
         RemoveLeftoverDoors();
     }
 
+    private void Start()
+    {
+        CacheAllRoomRenderers();
+    }
+
     private void GenerateLevel() //Generate Start, Connecting and Ending Rooms in Order
     {
         //Begin from the center of the grid
         Vector2Int startPos = Vector2Int.zero;
-        GameObject startRoom = SpawnRoom(GetRandomPrefab(startingRooms), startPos);
+        GameObject startRoomObj = SpawnRoom(GetRandomPrefab(startingRooms), startPos);
 
-        _levelNavMeshSurface = startRoom.GetComponent<NavMeshSurface>(); // Get the NavMeshSurface from the first room
+        _levelNavMeshSurface = startRoomObj.GetComponent<NavMeshSurface>(); // Get the NavMeshSurface from the first room
 
-        _grid.Add(startPos, startRoom); //Add the room using its vectorial postion and the room as a gameObject
+        Room startRoom = startRoomObj.GetComponent<Room>();
 
-        AddDoors(startPos, startRoom.GetComponentsInChildren<Door>()); //add the room's doors to have them checked later for other rooms
+        _grid.Add(startPos, startRoom); //Add the room using its vectorial postion and the room's component
+
+        RoomVisibilityManager.Instance.RegisterRoom(startRoom);
+
+        AddDoors(startPos, startRoomObj.GetComponentsInChildren<Door>()); //add the room's doors to have them checked later for other rooms
 
         if (roomAmount < 3) //reset to the least logical room amount
         {
@@ -61,12 +71,18 @@ public class BackroomsGenerator : MonoBehaviour
             if (_grid.ContainsKey(newPos)) //checking if there's a room in the grid spot (if yes restart loop and check for a different door, if no create the room)
                 continue;
 
-            GameObject connectingRoom = SpawnRoom(GetRandomPrefab(connectingRooms), newPos); //Spawn the new room by selecting a random room and filling the grid spot (then adding it to the grid)
+
+            GameObject connectingRoomObj = SpawnRoom(GetRandomPrefab(connectingRooms), newPos); //Spawn the new room by selecting a random room and filling the grid spot (then adding it to the grid)
+
+            Room connectingRoom = connectingRoomObj.GetComponent<Room>();
+
             _grid.Add(newPos, connectingRoom);
 
-            AddDoors(newPos, connectingRoom.GetComponentsInChildren<Door>()); //Add the doors of this new room to the door list.
+            RoomVisibilityManager.Instance.RegisterRoom(connectingRoom);
 
-            AddItemSpots(connectingRoom.GetComponentsInChildren<ItemSpot>()); //Add the itemspots of this new room to use later for item addition
+            AddDoors(newPos, connectingRoomObj.GetComponentsInChildren<Door>()); //Add the doors of this new room to the door list.
+
+            AddItemSpots(connectingRoomObj.GetComponentsInChildren<ItemSpot>()); //Add the itemspots of this new room to use later for item addition
 
             connectingRoomsToAdd--; //After adding the room decrease the counter
         }
@@ -81,10 +97,14 @@ public class BackroomsGenerator : MonoBehaviour
             if (_grid.ContainsKey(newPos))
                 continue;
 
-            GameObject finalRoom = SpawnRoom(GetRandomPrefab(endingRooms), newPos);
-            _grid.Add(newPos, finalRoom);
+            GameObject finalRoomObj = SpawnRoom(GetRandomPrefab(endingRooms), newPos);
 
-            AddDoors(newPos, finalRoom.GetComponentsInChildren<Door>());
+            Room finalRoom = finalRoomObj.GetComponent<Room>();
+
+            _grid.Add(newPos, finalRoom);
+            RoomVisibilityManager.Instance.RegisterRoom(finalRoom);
+
+            AddDoors(newPos, finalRoomObj.GetComponentsInChildren<Door>());
 
             break;
         }
@@ -108,6 +128,8 @@ public class BackroomsGenerator : MonoBehaviour
             }
         }
 
+        ConnectRooms();
+
         //Baking the level's navmesh after its creation
         if(_levelNavMeshSurface != null)
         {
@@ -128,7 +150,7 @@ public class BackroomsGenerator : MonoBehaviour
             GameObject doorObj = doorData.door.doorObj;
 
             Instantiate(wallPrefab, doorObj.transform.position, doorObj.transform.rotation, doorObj.transform.parent);
-            Destroy(doorObj);
+            DestroyImmediate(doorObj);
         }
     }
 
@@ -153,6 +175,37 @@ public class BackroomsGenerator : MonoBehaviour
             {
                 availableDoors.Add((roomPos, door));
             }
+        }
+    }
+
+    private void ConnectRooms()
+    {
+        foreach(var roomPair in _grid)
+        {
+            Vector2Int pos = roomPair.Key;
+
+            Room room = roomPair.Value;
+
+            CheckNeighbor(room, pos + Vector2Int.up);
+            CheckNeighbor(room, pos + Vector2Int.down);
+            CheckNeighbor(room, pos + Vector2Int.left);
+            CheckNeighbor(room, pos + Vector2Int.right);
+        }
+    }
+
+    private void CacheAllRoomRenderers()
+    {
+        foreach(Room room in _grid.Values)
+        {
+            room.CacheRenderers();
+        }
+    }
+
+    private void CheckNeighbor(Room room, Vector2Int pos)
+    {
+        if(_grid.TryGetValue(pos, out Room neighbour))
+        {
+            room.Neighbours.Add(neighbour);
         }
     }
 

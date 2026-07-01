@@ -820,6 +820,8 @@ GameObject:
   - component: {fileID: 5399538431881590786}
   - component: {fileID: 1275375706846114105}
   - component: {fileID: 826575827559329808}
+  - component: {fileID: -3817923860314333577}
+  - component: {fileID: 1522419790265096151}
   m_Layer: 6
   m_Name: Connecting Room
   m_TagString: Untagged
@@ -927,6 +929,41 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 5117233872351214670, guid: 05323b62e9a5c4f43bf94c451c70c99f, type: 3}
+--- !u!65 &-3817923860314333577
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8499375351602941832}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 4.000002, y: 3.7500012, z: 4.000003}
+  m_Center: {x: -0.0000009536743, y: 1.9999996, z: 0.00000059604645}
+--- !u!114 &1522419790265096151
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8499375351602941832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a8ee770f14845a4586a56e408017eed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Room
+  renderers: []
+  Neighbours: []
 --- !u!1 &9005050027482815381
 GameObject:
   m_ObjectHideFlags: 0

@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 8419847502019912938}
   - component: {fileID: 494753533317909886}
   - component: {fileID: 2475559845128906757}
+  - component: {fileID: 5705254409260981762}
+  - component: {fileID: 5271027548764856336}
   m_Layer: 6
   m_Name: Final Room
   m_TagString: Untagged
@@ -118,6 +120,41 @@ MeshCollider:
   m_Convex: 0
   m_CookingOptions: 30
   m_Mesh: {fileID: 5117233872351214670, guid: 05323b62e9a5c4f43bf94c451c70c99f, type: 3}
+--- !u!65 &5705254409260981762
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2971948496822234718}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 4.000002, y: 3.7500012, z: 4.000003}
+  m_Center: {x: -0.0000009536743, y: 1.9999996, z: 0.00000059604645}
+--- !u!114 &5271027548764856336
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2971948496822234718}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a8ee770f14845a4586a56e408017eed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Room
+  renderers: []
+  Neighbours: []
 --- !u!1 &3295171710061778587
 GameObject:
   m_ObjectHideFlags: 0
