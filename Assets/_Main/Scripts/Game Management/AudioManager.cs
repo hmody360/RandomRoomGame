@@ -17,9 +17,9 @@ public class AudioManager : MonoBehaviour
     private void Start()
     {
         //Get the previously set Sound Options and apply them to the respective Audio Group.
-        float masterVolume = PlayerPrefs.GetFloat("MasterVol");
-        float musicVolume = PlayerPrefs.GetFloat("MusicVol");
-        float SFXVolume = PlayerPrefs.GetFloat("SFXVol");
+        float masterVolume = PlayerPrefs.GetFloat("MasterVol",1);
+        float musicVolume = PlayerPrefs.GetFloat("MusicVol",1);
+        float SFXVolume = PlayerPrefs.GetFloat("SFXVol",1);
 
         audioMixer.SetFloat("MasterVol", Mathf.Log10(masterVolume) * 20);
         audioMixer.SetFloat("MusicVol", Mathf.Log10(musicVolume) * 20);

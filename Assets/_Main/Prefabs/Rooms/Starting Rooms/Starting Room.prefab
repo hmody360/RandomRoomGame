@@ -81,7 +81,6 @@ GameObject:
   - component: {fileID: 5873612275776678914}
   - component: {fileID: 9143782974172426555}
   - component: {fileID: 733749611177484450}
-  - component: {fileID: 5541890287457763435}
   - component: {fileID: 6240393041546772162}
   m_Layer: 6
   m_Name: Starting Room
@@ -221,27 +220,6 @@ MonoBehaviour:
   m_MinRegionArea: 2
   m_NavMeshData: {fileID: 0}
   m_BuildHeightMesh: 0
---- !u!65 &5541890287457763435
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2803058164744705685}
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_LayerOverridePriority: 0
-  m_IsTrigger: 1
-  m_ProvidesContacts: 0
-  m_Enabled: 1
-  serializedVersion: 3
-  m_Size: {x: 4.000002, y: 3.7500012, z: 4.000003}
-  m_Center: {x: -0.0000009536743, y: 1.9999996, z: 0.00000059604645}
 --- !u!114 &6240393041546772162
 MonoBehaviour:
   m_ObjectHideFlags: 0

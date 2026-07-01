@@ -21,6 +21,14 @@ public class RoomVisibilityManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        if (GameManager.instance != null)
+        {
+            Instance.VisibleDepth = GameManager.instance.GetRenderDistance();
+        }
+    }
+
     public void RegisterRoom(Room room)
     {
         allRooms.Add(room);

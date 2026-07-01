@@ -292,6 +292,7 @@ GameObject:
   - component: {fileID: 153184983865307866}
   - component: {fileID: 8815496022902134423}
   - component: {fileID: 4118193612275776730}
+  - component: {fileID: 4477370306370101912}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -501,6 +502,20 @@ MonoBehaviour:
   _currentlySelectedItemIndex: 0
   _audioSource: {fileID: 4421863443774811413}
   _switchEmptySlotClip: {fileID: 8300000, guid: e6e8e3eff8f852a45997f45ea0bf8622, type: 3}
+--- !u!114 &4477370306370101912
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7029913937856689692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 50870e4220166cc468cafa5fbeb1e3a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerRoomTracker
+  _levelGenerator: {fileID: 0}
+  roomSize: 0
 --- !u!1 &7474578212906110878
 GameObject:
   m_ObjectHideFlags: 0

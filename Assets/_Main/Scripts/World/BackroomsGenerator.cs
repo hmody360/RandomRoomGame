@@ -6,17 +6,17 @@ using UnityEngine;
 public class BackroomsGenerator : MonoBehaviour
 {
     [Header("Settings")]
-    public GameObject levelParent;
-    public float roomSize;
-    public int roomAmount;
+    [SerializeField] private GameObject levelParent;
+    [SerializeField] private float roomSize;
+    [SerializeField] private int roomAmount;
 
     [Header("Prefabs")]
-    public GameObject[] startingRooms;
-    public GameObject[] connectingRooms;
-    public GameObject[] endingRooms;
-    public GameObject wallPrefab;
-    public GameObject keyPrefab;
-    public GameObject[] randomItemPrefabs;
+    [SerializeField] private GameObject[] startingRooms;
+    [SerializeField] private GameObject[] connectingRooms;
+    [SerializeField] private GameObject[] endingRooms;
+    [SerializeField] private GameObject wallPrefab;
+    [SerializeField] private GameObject keyPrefab;
+    [SerializeField] private GameObject[] randomItemPrefabs;
 
     private Dictionary<Vector2Int, Room> _grid = new();
     private List<(Vector2Int pos, Door door)> availableDoors = new List<(Vector2Int, Door)>();
@@ -30,12 +30,11 @@ public class BackroomsGenerator : MonoBehaviour
             roomAmount = GameManager.instance.GetNoOfRoomsToGenerate();
         }
         GenerateLevel();
-        RemoveLeftoverDoors();
     }
 
     private void Start()
     {
-        CacheAllRoomRenderers();
+        
     }
 
     private void GenerateLevel() //Generate Start, Connecting and Ending Rooms in Order
@@ -136,6 +135,12 @@ public class BackroomsGenerator : MonoBehaviour
             _levelNavMeshSurface.BuildNavMesh();
         }
 
+        RemoveLeftoverDoors();
+
+        CacheAllRoomRenderers();
+
+        RoomVisibilityManager.Instance.EnterRoom(startRoom);
+
     }
 
     private void RemoveLeftoverDoors() //Patch Doors that are not connected to a room by checking if the direction has no grid spot adjacent to it.
@@ -150,7 +155,7 @@ public class BackroomsGenerator : MonoBehaviour
             GameObject doorObj = doorData.door.doorObj;
 
             Instantiate(wallPrefab, doorObj.transform.position, doorObj.transform.rotation, doorObj.transform.parent);
-            DestroyImmediate(doorObj);
+            DestroyImmediate(doorObj); //Immediately destroying the door to avoid including it within the cahced renders list for each room.
         }
     }
 
@@ -251,5 +256,16 @@ public class BackroomsGenerator : MonoBehaviour
     private GameObject GetRandomPrefab(GameObject[] array) //get a random item from an array of gameObjects.
     {
         return array[Random.Range(0, array.Length)];
+    }
+
+    public bool TryGetRoom(Vector2Int gridPosition, out Room room)
+    {
+        return _grid.TryGetValue(gridPosition, out room);
+        
+    }
+
+    public float GetRoomSize()
+    {
+        return roomSize;
     }
 }

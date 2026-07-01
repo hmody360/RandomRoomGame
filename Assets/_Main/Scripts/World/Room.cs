@@ -11,7 +11,8 @@ public class Room : MonoBehaviour
     {
         foreach (Renderer renderer in renderers)
         {
-
+            if (renderer == null)
+                continue;
             renderer.enabled = visible; 
         }
     }
@@ -19,17 +20,5 @@ public class Room : MonoBehaviour
     public void CacheRenderers()
     {
         renderers = GetComponentsInChildren<Renderer>(true);
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (!other.CompareTag("Player"))
-        {
-            return;
-        }
-        else
-        {
-            RoomVisibilityManager.Instance.EnterRoom(this);
-        }
     }
 }

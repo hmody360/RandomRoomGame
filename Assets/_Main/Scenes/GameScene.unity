@@ -3763,6 +3763,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1062506993}
   m_CullTransparentMesh: 1
+--- !u!114 &1202907994 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 393332676787101324, guid: e94553994e361b3458844f654f1ff7ae, type: 3}
+  m_PrefabInstance: {fileID: 1279643043419901911}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7bd3605402036e74690c72d148c84212, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BackroomsGenerator
 --- !u!1 &1241253563
 GameObject:
   m_ObjectHideFlags: 0
@@ -4964,51 +4975,6 @@ RectTransform:
   m_AnchoredPosition: {x: -5, y: 0}
   m_SizeDelta: {x: -20, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!1 &1587226820
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1587226821}
-  - component: {fileID: 1587226822}
-  m_Layer: 0
-  m_Name: RoomVisibilityManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1587226821
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1587226820}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.03282, y: 1.78639, z: -0.49892}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1587226822
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1587226820}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 16de6d71cb20288458213040fcba60ce, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::RoomVisibilityManager
-  VisibleDepth: 2
 --- !u!1 &1610441699
 GameObject:
   m_ObjectHideFlags: 0
@@ -6640,6 +6606,67 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7162cb8b61df4594187e2faee9bda640, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::UIManager
+--- !u!1001 &5508671454327670652
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 6627463422439072826, guid: bf54e164af402f94e9d3cd0029910486, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.03282
+      objectReference: {fileID: 0}
+    - target: {fileID: 6627463422439072826, guid: bf54e164af402f94e9d3cd0029910486, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.78639
+      objectReference: {fileID: 0}
+    - target: {fileID: 6627463422439072826, guid: bf54e164af402f94e9d3cd0029910486, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.49892
+      objectReference: {fileID: 0}
+    - target: {fileID: 6627463422439072826, guid: bf54e164af402f94e9d3cd0029910486, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6627463422439072826, guid: bf54e164af402f94e9d3cd0029910486, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6627463422439072826, guid: bf54e164af402f94e9d3cd0029910486, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6627463422439072826, guid: bf54e164af402f94e9d3cd0029910486, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6627463422439072826, guid: bf54e164af402f94e9d3cd0029910486, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6627463422439072826, guid: bf54e164af402f94e9d3cd0029910486, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6627463422439072826, guid: bf54e164af402f94e9d3cd0029910486, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6890304078989844501, guid: bf54e164af402f94e9d3cd0029910486, type: 3}
+      propertyPath: VisibleDepth
+      value: 99
+      objectReference: {fileID: 0}
+    - target: {fileID: 8014169856361263012, guid: bf54e164af402f94e9d3cd0029910486, type: 3}
+      propertyPath: m_Name
+      value: RoomVisibilityManager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: bf54e164af402f94e9d3cd0029910486, type: 3}
 --- !u!1001 &6088447962451258569
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -6648,6 +6675,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1948506599}
     m_Modifications:
+    - target: {fileID: 4477370306370101912, guid: 2608d46dc363e6741987034a14ed0b8c, type: 3}
+      propertyPath: _levelGenerator
+      value: 
+      objectReference: {fileID: 1202907994}
     - target: {fileID: 6576457834024114123, guid: 2608d46dc363e6741987034a14ed0b8c, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -6705,6 +6736,6 @@ SceneRoots:
   - {fileID: 441103228}
   - {fileID: 1948506599}
   - {fileID: 1279643043419901911}
-  - {fileID: 1587226821}
+  - {fileID: 5508671454327670652}
   - {fileID: 1541774296}
   - {fileID: 1273519511}

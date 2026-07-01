@@ -5,6 +5,7 @@ using UnityEngine.UI;
 public class GameManager : MonoBehaviour
 {
     [SerializeField] private int NoOfRoomsToGenerate = 10;
+    [SerializeField] private int RenderDistance;
 
     public static GameManager instance;
     [SerializeField] private bool _isGamePaused = false;
@@ -21,11 +22,6 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        
-    }
-
     public int GetNoOfRoomsToGenerate()
     {
         return NoOfRoomsToGenerate;
@@ -34,6 +30,16 @@ public class GameManager : MonoBehaviour
     public void SetNoOfRoomsToGenerate(int roomsNo)
     {
         NoOfRoomsToGenerate = roomsNo;
+    }
+
+    public int GetRenderDistance()
+    {
+        return RenderDistance;
+    }
+
+    public void SetRenderDistance(int renderDistance)
+    {
+        RenderDistance = renderDistance;
     }
 
     public void ToggleGamePause()

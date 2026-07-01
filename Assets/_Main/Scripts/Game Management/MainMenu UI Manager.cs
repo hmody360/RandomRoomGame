@@ -11,6 +11,9 @@ public class MainMenuUIManager : MonoBehaviour
     [SerializeField] private Slider _roomNoSlider;
     [SerializeField] private TextMeshProUGUI _roomsCounter;
 
+    [SerializeField] private Slider _renderDistanceSlider;
+    [SerializeField] private TextMeshProUGUI _renderDistanceCounter;
+
     public static MainMenuUIManager instance;
 
     private void Awake()
@@ -34,6 +37,14 @@ public class MainMenuUIManager : MonoBehaviour
             SetRoomNo(roomNo);
             _roomNoSlider.onValueChanged.AddListener(SetRoomNo);
         }
+
+        if (_renderDistanceSlider != null)
+        {
+            int renderDistance = PlayerPrefs.GetInt("RenderDistance", 2);
+            _renderDistanceSlider.value = renderDistance;
+            SetRenderDistance(renderDistance);
+            _renderDistanceSlider.onValueChanged.AddListener(SetRenderDistance);
+        }
     }
 
     private void SetRoomNo(float roomNo)
@@ -45,6 +56,17 @@ public class MainMenuUIManager : MonoBehaviour
             GameManager.instance.SetNoOfRoomsToGenerate(value);
         } 
         UpdateRoomsCounter(value);
+    }
+
+    private void SetRenderDistance(float renderDistance)
+    {
+        int value = Mathf.RoundToInt(renderDistance);
+        PlayerPrefs.SetInt("RenderDistance", value);
+        if (GameManager.instance != null)
+        {
+            GameManager.instance.SetRenderDistance(value);
+        }
+        UpdateRenderDistanceCounter(value);
     }
 
     public void ShowOptionsMenu()
@@ -67,6 +89,16 @@ public class MainMenuUIManager : MonoBehaviour
         }
 
         _roomsCounter.text = NoOfRooms.ToString();
+    }
+
+    public void UpdateRenderDistanceCounter(int RenderDistance)
+    {
+        if(_renderDistanceCounter == null)
+        {
+            return;
+        }
+
+        _renderDistanceCounter.text = RenderDistance.ToString();
     }
 
     public void StartGame()
